@@ -79,69 +79,132 @@
                 <div class="question">Q: Define Reuse Plan. Explain Library, Framework, Pattern</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Reuse Plan:</span> Strategy to use existing components instead of building from scratch</li>
+                        <li><span class="highlight">Reuse Plan:</span> Systematic strategy identifying what components can be reused, from where, and how they'll be adapted during system development</li>
+                        <li><strong>Key Objectives:</strong> Reduce development effort, improve software quality, promote standardization, increase productivity</li>
                     </ul>
                     <table>
                         <tr>
                             <th>Type</th>
                             <th>Definition</th>
+                            <th>Features</th>
                             <th>Example</th>
-                            <th>Control</th>
                         </tr>
                         <tr>
                             <td><strong>Library</strong></td>
-                            <td>Collection of pre-written functions/classes</td>
-                            <td>Math library, String library</td>
-                            <td>You call library</td>
+                            <td>Collection of reusable classes or functions providing specific functionality</td>
+                            <td>Called by application, provides ready-made functionality, no control over app flow</td>
+                            <td>Math library, Java Collections, Utility libraries</td>
                         </tr>
                         <tr>
                             <td><strong>Framework</strong></td>
-                            <td>Reusable architecture providing skeleton</td>
-                            <td>Spring, Django</td>
-                            <td>Framework calls you</td>
+                            <td>Reusable application structure defining architecture and flow of control</td>
+                            <td>Framework calls user code, provides extensible components, supports large-scale reuse, Inversion of Control</td>
+                            <td>Spring, .NET, Django, Hibernate</td>
                         </tr>
                         <tr>
                             <td><strong>Pattern</strong></td>
-                            <td>Reusable solution template</td>
-                            <td>Singleton, Observer</td>
-                            <td>Design template</td>
+                            <td>Reusable solution to recurring design problem in specific context</td>
+                            <td>Reuses design knowledge (not code), language-independent, improves maintainability, proven solutions</td>
+                            <td>Singleton, Factory, Observer, MVC</td>
                         </tr>
                     </table>
+                    <ul>
+                        <li><strong>Role in Reuse Plan:</strong></li>
+                        <li>• Library → Ready-made tools (code reuse)</li>
+                        <li>• Framework → Ready-made structure (architecture reuse)</li>
+                        <li>• Pattern → Ready-made idea (design reuse)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Different Reuse Things Considered During System Modeling</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1. Reusable Classes:</strong> Classes designed for reuse, general-purpose and loosely coupled</li>
+                        <li><strong>2. Reusable Components:</strong> Self-contained modules that can be plugged into different systems</li>
+                        <li><strong>3. Libraries:</strong> Provide common services, reduce duplicate coding</li>
+                        <li><strong>4. Frameworks:</strong> Provide reusable system architecture, define application structure</li>
+                        <li><strong>5. Design Patterns:</strong> Reuse of proven design solutions, improves design consistency</li>
+                        <li><strong>6. UML Models:</strong> Reusable class diagrams, reusable interaction diagrams</li>
+                        <li><strong>7. Domain Models:</strong> Reuse of domain knowledge, speeds up analysis phase</li>
+                        <li><strong>Benefits:</strong> Faster development, reduced errors, improved quality, easier maintenance</li>
+                    </ul>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">External Control Strategies</div>
+            <div class="section-title">Software Control Strategies & External Control</div>
 
             <div class="topic">
-                <div class="question">Q: Software Control Strategies & External Control Categories</div>
+                <div class="question">Q: Software Control Strategies in System Design</div>
                 <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Software Control Strategy:</span> Defines how execution flow of system is managed - who controls whom, when actions triggered, how components interact</li>
+                    </ul>
                     <table>
                         <tr>
-                            <th>Control Type</th>
+                            <th>Strategy</th>
                             <th>Description</th>
+                            <th>Characteristics</th>
                             <th>Example</th>
                         </tr>
                         <tr>
-                            <td><strong>Interactive Interface</strong></td>
-                            <td>User-driven through GUI (event-driven)</td>
-                            <td>Desktop applications, Web apps</td>
+                            <td><strong>Centralized Control</strong></td>
+                            <td>Single control object manages entire system execution</td>
+                            <td>One main controller, controls sequence, other objects passive, simple, Call-Return/Manager Model</td>
+                            <td>Main program with subroutines, ATM controller managing all operations</td>
                         </tr>
                         <tr>
-                            <td><strong>Real-Time System</strong></td>
-                            <td>Responds within strict time constraints</td>
-                            <td>Embedded systems, Control systems</td>
+                            <td><strong>Event-Driven Control</strong></td>
+                            <td>Flow determined by events from users or system</td>
+                            <td>No central controller, objects react to events, highly flexible, suitable for interactive systems</td>
+                            <td>GUI applications, Telephone switching, Real-time systems</td>
                         </tr>
                         <tr>
-                            <td><strong>Transaction Manager</strong></td>
-                            <td>Manages database transactions (ACID)</td>
-                            <td>Banking systems, E-commerce</td>
+                            <td><strong>Concurrent Control</strong></td>
+                            <td>Multiple processes/threads execute simultaneously</td>
+                            <td>Parallel execution, synchronization required, improves performance</td>
+                            <td>ATM dispensing cash + printing receipt, Operating systems</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><strong>Summary:</strong> Centralized → One boss controls everything | Event-Driven → Actions on events | Concurrent → Many things at once</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Categories of External Control</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">External Control:</span> Control mechanisms where execution flow influenced by external entities (users, devices, time events)</li>
+                    </ul>
+                    <table>
+                        <tr>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Characteristics</th>
+                            <th>Example</th>
                         </tr>
                         <tr>
-                            <td><strong>Dynamic Simulation</strong></td>
-                            <td>Models real-world behavior over time</td>
-                            <td>Flight simulators, Training systems</td>
+                            <td><strong>Event-Driven</strong></td>
+                            <td>System behavior triggered by external events</td>
+                            <td>Asynchronous execution, system reacts to events, no fixed order, sources: user input/hardware/network</td>
+                            <td>Button click in GUI, Incoming call in telephone</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time-Driven</strong></td>
+                            <td>Actions triggered at specific time intervals</td>
+                            <td>Uses clocks/timers, predictable execution, deterministic behavior, common in embedded systems</td>
+                            <td>Alarm systems, Periodic sensor data collection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interrupt-Driven</strong></td>
+                            <td>Execution interrupted to handle urgent external signals</td>
+                            <td>High priority events, immediate response, preempts normal execution, essential for safety-critical</td>
+                            <td>Hardware interrupts, Emergency shutdown signal</td>
                         </tr>
                     </table>
                 </div>
@@ -152,15 +215,76 @@
             <div class="section-title">Subsystems</div>
 
             <div class="topic">
-                <div class="question">Q: What is Subsystem? How to organize?</div>
+                <div class="question">Q: What is Subsystem? How to Organize System into Subsystems?</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Subsystem:</span> Package of classes working together for common purpose</li>
-                        <li><strong>Organization Methods:</strong></li>
-                        <li>1. By Layers: Presentation → Business Logic → Data Access</li>
-                        <li>2. By Function: User Management, Payment, Reporting</li>
-                        <li>3. By Domain: Customer, Product, Order modules</li>
-                        <li><strong>Communication:</strong> Direct calls, Message passing, Shared data, Events</li>
+                        <li><span class="highlight">Subsystem:</span> Group of related classes/components/objects working together to perform well-defined function within larger system</li>
+                        <li><strong>Key Points:</strong> Acts as logical partition, has well-defined interface, hides internal details (information hiding), can be developed/tested independently</li>
+                        <li><strong>Steps to Organize:</strong></li>
+                        <li>1. <strong>Identify Major Functional Areas:</strong> Analyze requirements, group related functionalities (e.g., ATM → Authentication, Transaction, Cash Handling)</li>
+                        <li>2. <strong>Define Responsibilities:</strong> Each subsystem has clear responsibility, avoid overlapping</li>
+                        <li>3. <strong>Apply High Cohesion:</strong> Classes inside subsystem strongly related</li>
+                        <li>4. <strong>Minimize Coupling:</strong> Subsystems depend on each other minimally</li>
+                        <li>5. <strong>Define Interfaces:</strong> Interaction only through interfaces</li>
+                        <li>6. <strong>Layered Organization:</strong> Presentation → Business Logic → Data Access</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Ways Subsystems Can Communicate</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Method</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Direct Method Calls</strong></td>
+                            <td>One subsystem directly invokes methods of another</td>
+                            <td>Authentication subsystem calling User Database</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Message Passing</strong></td>
+                            <td>Subsystems communicate by sending messages or events</td>
+                            <td>Event-driven systems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Shared Data Repository</strong></td>
+                            <td>Subsystems communicate via shared database or data store</td>
+                            <td>Multiple subsystems accessing same database</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interface-Based Communication</strong></td>
+                            <td>Subsystems interact only through defined interfaces, not direct access</td>
+                            <td>Service APIs</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client-Server Communication</strong></td>
+                            <td>One subsystem acts as client, another as server</td>
+                            <td>Web application architecture</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><strong>Advantages:</strong> Loose coupling, high maintainability, easy scalability, improved reliability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Breaking System into Subsystems and Allocation</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Breaking System into Subsystems:</strong></li>
+                        <li>Step 1: Requirement Analysis → Study functional and non-functional requirements</li>
+                        <li>Step 2: Identify Logical Groups → Group related classes and operations</li>
+                        <li>Step 3: Define Boundaries → Decide what belongs inside each subsystem</li>
+                        <li>Step 4: Assign Responsibilities → Each subsystem performs single major function</li>
+                        <li><strong>Allocation (Assigning subsystems to):</strong></li>
+                        <li>1. <strong>Hardware Allocation:</strong> Subsystem mapped to specific hardware (e.g., Sensor subsystem → embedded controller)</li>
+                        <li>2. <strong>Software Allocation:</strong> Subsystems mapped to software layers (e.g., UI subsystem → Presentation layer)</li>
+                        <li>3. <strong>Process Allocation:</strong> Subsystems assigned to separate processes or threads</li>
                     </ul>
                 </div>
             </div>
@@ -170,17 +294,38 @@
             <div class="section-title">Data Storage Management</div>
 
             <div class="topic">
-                <div class="question">Q: Explain Data Storage Management</div>
+                <div class="question">Q: Data Storage Management in System Design</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Deciding HOW and WHERE</span> to store data persistently</li>
-                        <li><strong>Considerations:</strong></li>
-                        <li>1. Data Format: Structured (tables) vs Unstructured (files)</li>
-                        <li>2. Access Patterns: Random vs Sequential</li>
-                        <li>3. Volume: Amount of data</li>
-                        <li>4. Performance: Read/Write speed</li>
-                        <li>5. Persistence: Temporary vs Permanent</li>
-                        <li>6. Security: Encryption, access control</li>
+                        <li><span class="highlight">Data Storage Management:</span> Deals with how data is stored, accessed, updated, and maintained throughout system lifecycle</li>
+                        <li><strong>Defines:</strong> What data to store, where it is stored, how it is accessed, how long it is retained</li>
+                        <li><strong>Steps to Design:</strong></li>
+                        <li>1. <strong>Identify Data Requirements:</strong> Analyze requirements, identify entities/attributes/relationships (e.g., Customer, Order, Payment)</li>
+                        <li>2. <strong>Class Identification & Mapping:</strong> Identify persistent classes, decide which attributes need storage</li>
+                        <li>3. <strong>Choose Storage Type:</strong> File-based storage, Database (Relational/Object-oriented)</li>
+                        <li>4. <strong>Design Data Structures:</strong> Tables (rows, columns), Objects (attributes, methods), Relationships (associations)</li>
+                        <li>5. <strong>Define Access Mechanism:</strong> CRUD operations (Create, Read, Update, Delete), query mechanisms</li>
+                        <li>6. <strong>Apply Data Integrity Rules:</strong> Primary keys, foreign keys, constraints</li>
+                        <li>7. <strong>Consider Performance & Scalability:</strong> Indexing, caching, data partitioning</li>
+                        <li>8. <strong>Security & Backup:</strong> Authentication/authorization, encryption, backup/recovery strategies</li>
+                        <li><strong>Importance:</strong> Ensures data consistency, improves performance, enables recovery, supports long-term maintenance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Data Storage Management in Software Modeling</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Key Aspects:</strong></li>
+                        <li>1. <strong>Identification of Persistent Objects:</strong> Objects whose data must survive after program execution (e.g., User, Account, Transaction)</li>
+                        <li>2. <strong>Data Modeling:</strong> Entity identification, attribute definition, relationship modeling</li>
+                        <li>3. <strong>Object-to-Data Mapping:</strong> Classes → tables, Attributes → columns, Associations → keys</li>
+                        <li>4. <strong>Storage Abstraction:</strong> Use of Data Access Layer, separation of business logic and data logic</li>
+                        <li>5. <strong>Transaction Management:</strong> Ensures ACID (Atomicity, Consistency, Isolation, Durability)</li>
+                        <li>6. <strong>Data Access Design:</strong> Use of repositories, encapsulation of storage logic</li>
+                        <li>7. <strong>Data Validation & Constraints:</strong> Range checks, uniqueness constraints, referential integrity</li>
+                        <li><strong>Benefits:</strong> Cleaner architecture, easier maintenance, reduced redundancy, improved reliability</li>
                     </ul>
                 </div>
             </div>
@@ -190,15 +335,21 @@
             <div class="section-title">Global Resource Handling</div>
 
             <div class="topic">
-                <div class="question">Q: How are Global Resources Handled?</div>
+                <div class="question">Q: How Global Resources are Handled in System Design</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Global Resources:</span> Shared entities accessed by multiple parts</li>
-                        <li><strong>Handling Strategies:</strong></li>
-                        <li>1. Singleton Pattern: Single instance accessible globally</li>
-                        <li>2. Resource Pooling: Reuse limited resources (connection pools)</li>
-                        <li>3. Synchronization: Control concurrent access (locks, semaphores)</li>
-                        <li>4. Resource Manager: Centralized allocation/deallocation control</li>
+                        <li><span class="highlight">Global Resource:</span> System-wide resource accessed by multiple objects/components/subsystems simultaneously</li>
+                        <li><strong>Examples:</strong> Database connections, files, printers, network sockets, shared memory, global configuration data</li>
+                        <li><strong>Need:</strong> Prevent data inconsistency, avoid resource conflicts, ensure safe concurrent access, improve system performance</li>
+                        <li><strong>Handling Methods:</strong></li>
+                        <li>1. <strong>Centralized Resource Management:</strong> Single controller/manager object manages global resource, other objects request through manager (e.g., Database Connection Manager, Print Manager)</li>
+                        <li>2. <strong>Controlled Access Using Interfaces:</strong> Global resources accessed only through well-defined interfaces, direct access restricted</li>
+                        <li>3. <strong>Synchronization & Concurrency Control:</strong> When multiple processes access resource, use synchronization (locks, semaphores, mutex)</li>
+                        <li>4. <strong>Resource Allocation & Deallocation:</strong> Resources allocated when needed, released after use (prevents wastage and deadlocks)</li>
+                        <li>5. <strong>Avoiding Global Variables:</strong> Excessive use increases coupling; use encapsulation and access methods instead</li>
+                        <li>6. <strong>Use of Design Patterns:</strong> Singleton (single instance), Object Pool (reuse limited resources), Facade (simplified access)</li>
+                        <li>7. <strong>Error Handling & Recovery:</strong> System handles resource failure gracefully (rollback, retry, fallback)</li>
+                        <li><strong>Advantages:</strong> Prevents deadlocks, improves stability, ensures consistent data, enhances scalability</li>
                     </ul>
                 </div>
             </div>
@@ -208,43 +359,62 @@
             <div class="section-title">Architecture Styles</div>
 
             <div class="topic">
-                <div class="question">Q: Different Architecture Styles</div>
+                <div class="question">Q: What is Architectural Style?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Architectural Style:</span> Reusable pattern defining overall structure of software system - specifies how components are organized and interact</li>
+                        <li><strong>Defines:</strong> Components of system, their responsibilities, rules for interaction and communication</li>
+                        <li><strong>Key Characteristics:</strong> High-level system organization, defines system structure, influences performance and maintainability</li>
+                        <li><strong>Importance:</strong> Helps manage complexity, provides design guidance, encourages reuse, improves team communication</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Different Architectural Styles</div>
                 <div class="answer">
                     <table>
                         <tr>
                             <th>Style</th>
                             <th>Description</th>
+                            <th>Advantages</th>
                             <th>Example</th>
                         </tr>
                         <tr>
-                            <td><strong>Layered</strong></td>
-                            <td>Organized in horizontal layers</td>
-                            <td>Web apps (UI → Logic → Data)</td>
+                            <td><strong>Layered Architecture</strong></td>
+                            <td>System divided into hierarchical layers (Presentation → Business Logic → Data Access)</td>
+                            <td>Modularity, easy maintenance, clear separation of concerns</td>
+                            <td>ATM system, Enterprise applications, Operating systems</td>
                         </tr>
                         <tr>
                             <td><strong>Client-Server</strong></td>
-                            <td>Clients request services from server</td>
-                            <td>Web browser & web server</td>
+                            <td>Clients request services from centralized server</td>
+                            <td>Centralized data management, easy scalability, centralized control</td>
+                            <td>Web applications, Banking systems, Internet banking</td>
                         </tr>
                         <tr>
-                            <td><strong>Pipe-and-Filter</strong></td>
-                            <td>Data flows through processing filters</td>
-                            <td>Unix commands piped together</td>
+                            <td><strong>Repository</strong></td>
+                            <td>All data stored in central repository accessed by components</td>
+                            <td>Data consistency, easy backup, simplified data management</td>
+                            <td>Database-driven systems, Database systems</td>
                         </tr>
                         <tr>
-                            <td><strong>MVC</strong></td>
-                            <td>Separates Model, View, Controller</td>
-                            <td>Django, Rails frameworks</td>
+                            <td><strong>Pipe and Filter</strong></td>
+                            <td>Data flows through sequence of processing units (filters)</td>
+                            <td>High reusability, easy debugging, step-by-step processing</td>
+                            <td>Compiler design, UNIX pipelines</td>
                         </tr>
                         <tr>
-                            <td><strong>Microservices</strong></td>
-                            <td>Independent, loosely coupled services</td>
-                            <td>Modern cloud applications</td>
+                            <td><strong>Model-View-Controller (MVC)</strong></td>
+                            <td>Separates data (Model), UI (View), and control logic (Controller)</td>
+                            <td>Clear separation, easy maintenance, supports parallel development</td>
+                            <td>Web frameworks, Interactive applications</td>
                         </tr>
                         <tr>
                             <td><strong>Event-Driven</strong></td>
-                            <td>Components communicate through events</td>
-                            <td>Notification systems</td>
+                            <td>System flow determined by events rather than predefined sequence</td>
+                            <td>Flexible, scalable, suitable for real-time systems</td>
+                            <td>GUI applications, Telephone switching, Embedded systems</td>
                         </tr>
                     </table>
                 </div>
@@ -261,28 +431,39 @@
             <div class="topic">
                 <div class="question">Q: Explain Node, Association, Dependency in Deployment Diagram</div>
                 <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Deployment Diagram:</span> Represents physical architecture of system - shows how software components deployed on hardware nodes and how nodes communicate</li>
+                        <li><strong>Provides runtime view of system</strong></li>
+                    </ul>
                     <table>
                         <tr>
                             <th>Element</th>
-                            <th>Description</th>
+                            <th>Definition</th>
                             <th>Representation</th>
+                            <th>Example</th>
                         </tr>
                         <tr>
                             <td><strong>Node</strong></td>
-                            <td>Physical hardware/environment where components run</td>
-                            <td>3D box (Device: PC, server, phone; Environment: OS, JVM)</td>
+                            <td>Physical or logical computational resource that can host software components</td>
+                            <td>3D box (Hardware: ATM Machine, Server; Software: JVM, Application Server)</td>
+                            <td>ATM Machine, Bank Server, Database Server</td>
                         </tr>
                         <tr>
                             <td><strong>Association</strong></td>
-                            <td>Communication path between nodes</td>
-                            <td>Solid line (shows network, protocols like HTTP, TCP)</td>
+                            <td>Communication link between two nodes showing data exchange and network connectivity</td>
+                            <td>Solid line between nodes (labeled with protocol: TCP/IP, HTTP)</td>
+                            <td>ATM Machine ↔ Bank Server</td>
                         </tr>
                         <tr>
                             <td><strong>Dependency</strong></td>
-                            <td>One component needs another to function</td>
-                            <td>Dashed arrow (shows deployment relationships)</td>
+                            <td>One node depends on another node for services or resources</td>
+                            <td>Dashed arrow (points from dependent to provider)</td>
+                            <td>ATM Machine → Database Server</td>
                         </tr>
                     </table>
+                    <ul>
+                        <li><strong>Importance:</strong> Shows physical system architecture, helps in performance planning, useful for hardware-software mapping, supports scalability planning</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -291,8 +472,11 @@
             <div class="section-title">Transformations</div>
 
             <div class="topic">
-                <div class="question">Q: Batch vs Continuous Transformation</div>
+                <div class="question">Q: Batch Transformation vs Continuous Transformation</div>
                 <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Transformation:</span> Way input data is processed to produce output data</li>
+                    </ul>
                     <table>
                         <tr>
                             <th>Aspect</th>
@@ -300,26 +484,54 @@
                             <th>Continuous Transformation</th>
                         </tr>
                         <tr>
-                            <td><strong>Process</strong></td>
-                            <td>Data processed in large groups at scheduled times</td>
-                            <td>Data processed as it arrives (real-time)</td>
+                            <td><strong>Definition</strong></td>
+                            <td>Processes data in groups (batches) rather than immediately</td>
+                            <td>Processes data continuously as it arrives</td>
                         </tr>
                         <tr>
-                            <td><strong>Timing</strong></td>
-                            <td>Periodic (hourly, daily, monthly)</td>
-                            <td>Immediate, continuous</td>
+                            <td><strong>Processing Mode</strong></td>
+                            <td>Group-wise</td>
+                            <td>Input-by-input</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Working</strong></td>
+                            <td>Data accumulated → batch triggered → output after completion</td>
+                            <td>Input arrives → processing instant → output immediate</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Response Time</strong></td>
+                            <td>Delayed (high latency)</td>
+                            <td>Immediate (low latency)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Real-Time Use</strong></td>
+                            <td>No (not suitable)</td>
+                            <td>Yes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Characteristics</strong></td>
+                            <td>Collected over time, scheduled intervals, no immediate response, large volumes</td>
+                            <td>Real-time processing, no accumulation, immediate response, event-driven</td>
                         </tr>
                         <tr>
                             <td><strong>Advantages</strong></td>
-                            <td>Efficient for large volumes, off-peak processing</td>
-                            <td>Real-time results, no waiting</td>
+                            <td>Efficient for bulk data, reduced overhead, simple control logic</td>
+                            <td>Low latency, suitable for real-time, immediate feedback</td>
                         </tr>
                         <tr>
-                            <td><strong>Example</strong></td>
-                            <td>Payroll processing, Database backups</td>
-                            <td>ATM transactions, Stock trading</td>
+                            <td><strong>Disadvantages</strong></td>
+                            <td>High latency, not suitable for real-time</td>
+                            <td>Higher resource usage, complex synchronization</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Examples</strong></td>
+                            <td>Payroll processing, Monthly billing, End-of-day bank processing</td>
+                            <td>ATM cash withdrawal, Telephone switching, Online transactions</td>
                         </tr>
                     </table>
+                    <ul>
+                        <li><strong>Summary:</strong> Batch → collect data first, process later | Continuous → process data immediately</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -334,38 +546,62 @@
             <div class="topic">
                 <div class="question">Q: Components of Component Diagram</div>
                 <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Component Diagram:</span> UML diagram depicting organization, dependencies, and interfaces of software components - shows how system divided into components and how they interact</li>
+                    </ul>
                     <table>
                         <tr>
                             <th>Component</th>
-                            <th>Description</th>
-                            <th>Symbol</th>
+                            <th>Definition</th>
+                            <th>Representation</th>
+                            <th>Example</th>
                         </tr>
                         <tr>
                             <td><strong>Component</strong></td>
-                            <td>Modular, replaceable part (libraries, packages, modules)</td>
-                            <td>Rectangle with component icon</td>
+                            <td>Modular, replaceable, reusable part encapsulating implementation and exposing interfaces</td>
+                            <td>Rectangle with two small tabs on side</td>
+                            <td>Authentication Component, Payment Component, Database Component</td>
                         </tr>
                         <tr>
                             <td><strong>Provided Interface</strong></td>
-                            <td>Services component offers</td>
-                            <td>Lollipop symbol</td>
+                            <td>Services offered by component</td>
+                            <td>Lollipop symbol (○)</td>
+                            <td>ATM provides withdrawCash()</td>
                         </tr>
                         <tr>
                             <td><strong>Required Interface</strong></td>
-                            <td>Services component needs</td>
-                            <td>Socket symbol</td>
+                            <td>Services needed by component</td>
+                            <td>Socket symbol (⊂)</td>
+                            <td>Bank Server requires validatePIN()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Port</strong></td>
+                            <td>Point of interaction between component and environment</td>
+                            <td>Small square on component boundary</td>
+                            <td>Groups related interfaces, controls access</td>
                         </tr>
                         <tr>
                             <td><strong>Dependency</strong></td>
-                            <td>One component depends on another</td>
-                            <td>Dashed arrow</td>
+                            <td>One component depends on another for functionality</td>
+                            <td>Dashed arrow (points from dependent to provider)</td>
+                            <td>ATM Component → Bank Server Component</td>
                         </tr>
                         <tr>
-                            <td><strong>Realization</strong></td>
-                            <td>Component implements an interface</td>
-                            <td>Dashed line + hollow arrow</td>
+                            <td><strong>Connector</strong></td>
+                            <td>Communication path between components or interfaces</td>
+                            <td>Lines connecting components</td>
+                            <td>Assembly Connector, Delegation Connector</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Artifact</strong></td>
+                            <td>Physical piece of information produced during development</td>
+                            <td>Rectangle with artifact icon</td>
+                            <td>.jar file, .exe file, .dll file</td>
                         </tr>
                     </table>
+                    <ul>
+                        <li><strong>Importance:</strong> Shows system modularization, helps in reuse and maintenance, useful for large-scale systems, supports deployment planning</li>
+                    </ul>
                 </div>
             </div>
         </div>
@@ -377,26 +613,67 @@
                 <div class="question">Q: System Performance Estimation</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Predicting</span> system's speed, capacity, resource usage before implementation</li>
-                        <li><strong>Metrics:</strong> Response time, Throughput, Resource utilization</li>
-                        <li><strong>Methods:</strong> Analytical modeling, Simulation, Prototyping, Benchmarking</li>
-                        <li>Helps identify bottlenecks early</li>
+                        <li><span class="highlight">System Performance Estimation:</span> Process of predicting how efficiently system will perform under expected workload conditions before actual implementation</li>
+                        <li><strong>Assesses:</strong> Speed, responsiveness, scalability, resource utilization</li>
+                        <li><strong>Key Performance Factors:</strong> Response time, throughput, CPU utilization, memory usage, network latency</li>
+                        <li><strong>Techniques Used:</strong> Analytical models, simulation models, prototyping, load testing estimates</li>
+                        <li><strong>Importance:</strong> Identifies bottlenecks early, helps in hardware sizing, improves user experience, reduces cost of redesign</li>
+                        <li><strong>Example (ATM):</strong> Time to authenticate user, time to dispense cash, concurrent user handling</li>
                     </ul>
                 </div>
             </div>
 
             <div class="topic">
-                <div class="question">Q: Constructing Application Class Model</div>
+                <div class="question">Q: Interactive Interface, Dynamic Simulation, Real-Time System, Transaction Manager</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Concept</th>
+                            <th>Definition</th>
+                            <th>Characteristics</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Interactive Interface</strong></td>
+                            <td>Allows users to interact with system and receive immediate feedback</td>
+                            <td>User-driven, event-based, requires fast response time</td>
+                            <td>ATM screen, Web applications, Mobile apps</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dynamic Simulation</strong></td>
+                            <td>Technique of simulating system behavior over time to analyze performance</td>
+                            <td>Study system load, predict bottlenecks, analyze concurrency</td>
+                            <td>Simulating multiple ATM users at peak time</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Real-Time System</strong></td>
+                            <td>System where correctness depends on both result and time</td>
+                            <td>Strict timing constraints, event-driven, deterministic (Hard: Airbag; Soft: Online booking)</td>
+                            <td>ATM system, Telephone exchange, Embedded systems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transaction Manager</strong></td>
+                            <td>Controls execution of transactions to ensure data consistency and reliability</td>
+                            <td>Start transaction, commit, rollback on failure, handle concurrency</td>
+                            <td>Bank transaction processing, Online payment system</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Steps to Construct Application Class Model</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Steps:</span></li>
-                        <li>1. Identify Classes: Find nouns in requirements</li>
-                        <li>2. Identify Attributes: Properties of each class</li>
-                        <li>3. Identify Methods: Actions/operations</li>
-                        <li>4. Identify Relationships: Associations between classes</li>
-                        <li>5. Define Multiplicity: How many instances</li>
-                        <li>6. Add Inheritance: Parent-child relationships</li>
-                        <li>7. Refine Model: Remove redundancy, add constraints</li>
+                        <li><span class="highlight">Application Class Model:</span> Represents software-specific classes that implement system functionality, derived from use cases and domain model</li>
+                        <li><strong>Steps:</strong></li>
+                        <li>1. <strong>Identify Use Cases:</strong> Analyze functional requirements, understand system behavior (e.g., Withdraw Cash, Check Balance)</li>
+                        <li>2. <strong>Identify Application Classes:</strong> Identify software-oriented classes responsible for control and coordination (e.g., ATMController, TransactionManager)</li>
+                        <li>3. <strong>Identify Attributes:</strong> Determine data needed by each class (e.g., Account → accountNumber, balance)</li>
+                        <li>4. <strong>Identify Operations:</strong> Operations correspond to use case actions (e.g., validatePIN(), debitAmount())</li>
+                        <li>5. <strong>Define Relationships:</strong> Association, dependency, aggregation</li>
+                        <li>6. <strong>Apply OO Principles:</strong> High cohesion, low coupling, encapsulation</li>
+                        <li><strong>Importance:</strong> Bridges analysis and design, guides coding, improves maintainability</li>
                     </ul>
                 </div>
             </div>
