@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OOMD Study Checker</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        h1 {
+            color: #333;
+            border-bottom: 3px solid #4CAF50;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        h2 {
+            color: #2196F3;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: transparent;
+            border-left: 4px solid #2196F3;
+            cursor: default;
+            user-select: none;
+        }
+        
+        h3 {
+            color: #d32f2f;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            padding: 8px;
+            background-color: #f5f5f5;
+            cursor: pointer;
+            border-left: 4px solid #d32f2f;
+            transition: all 0.3s;
+            font-weight: bold;
+        }
+        
+        h3:hover {
+            background-color: #e0e0e0;
+        }
+        
+        .topic {
+            margin-bottom: 20px;
+        }
+        
+        .question {
+            padding: 8px 12px;
+            margin: 5px 0;
+            border-left: 3px solid #ddd;
+            cursor: pointer;
+            transition: all 0.3s;
+            background-color: white;
+        }
+        
+        .question:hover {
+            background-color: #f9f9f9;
+            border-left-color: #666;
+        }
+        
+        .done {
+            background-color: #c8e6c9 !important;
+            border-left-color: #4CAF50 !important;
+        }
+        
+        .review {
+            background-color: #fff9c4 !important;
+            border-left-color: #FFC107 !important;
+        }
+        
+        .highlight {
+            background-color: #bbdefb !important;
+            border-left-color: #2196F3 !important;
+        }
+        
+        .diagram-section {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            border: 2px solid #ddd;
+        }
+        
+        .diagram-section img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 10px auto;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        
+        .diagram-title {
+            font-weight: bold;
+            color: #2196F3;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .legend {
+            display: flex;
+            gap: 20px;
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #f5f5f5;
+            border-radius: 5px;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-box {
+            width: 30px;
+            height: 20px;
+            border: 1px solid #333;
+            border-radius: 3px;
+        }
+        
+        .reset-btn {
+            margin: 20px 0;
+            padding: 10px 20px;
+            background-color: #f44336;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .reset-btn:hover {
+            background-color: #d32f2f;
+        }
+        
+        .stats {
+            margin: 20px 0;
+            padding: 15px;
+            background-color: #e3f2fd;
+            border-radius: 5px;
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+        }
+        
+        .stat-item {
+            font-weight: bold;
+        }
+        
+        .navbar {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px 0;
+            margin: -30px -30px 20px -30px;
+            border-radius: 8px 8px 0 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+        
+        .navbar-content {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            padding: 0 20px;
+        }
+        
+        .nav-link {
+            color: white;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            font-weight: bold;
+            border: 2px solid transparent;
+        }
+        
+        .nav-link:hover {
+            background: rgba(255,255,255,0.2);
+            border-color: white;
+            transform: translateY(-2px);
+        }
+        
+        .nav-link.unit3 {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+        
+        .nav-link.unit4 {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+        
+        .nav-link.unit5 {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+        
+        .nav-link.unit6 {
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <nav class="navbar">
+            <div class="navbar-content">
+                <a href="OOMD_Checker.html" class="nav-link">🏠 Home Checker</a>
+                <a href="Unit3_Flashcards.html" class="nav-link unit3">📚 Unit 3</a>
+                <a href="Unit4_Flashcards.html" class="nav-link unit4">📚 Unit 4</a>
+                <a href="Unit5_Flashcards.html" class="nav-link unit5">📚 Unit 5</a>
+                <a href="Unit6_Flashcards.html" class="nav-link unit6">📚 Unit 6</a>
+            </div>
+        </nav>
+        
+        <h1>OOMD - Object-Oriented Modeling and Design Study Checker</h1>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-box" style="background-color: white;"></div>
+                <span>Not Started - Click once</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background-color: #c8e6c9;"></div>
+                <span>Done - Click twice</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background-color: #fff9c4;"></div>
+                <span>Needs Review - Click three times</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-box" style="background-color: #bbdefb;"></div>
+                <span>Important - Click four times</span>
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">Total: <span id="total">0</span></div>
+            <div class="stat-item" style="color: #4CAF50;">Done: <span id="done">0</span></div>
+            <div class="stat-item" style="color: #FFC107;">Review: <span id="review">0</span></div>
+            <div class="stat-item">Remaining: <span id="remaining">0</span></div>
+        </div>
+        
+        <button class="reset-btn" onclick="resetAll()">Reset All Progress</button>
+
+        <h2>Unit 3</h2>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Use Case Diagram (Actor, Use Case, Relationships)</h3>
+            <div class="diagram-section">
+                <div class="diagram-title">Use Case Diagram Reference</div>
+                <img src="UseCase_Diagram.jpg" alt="Use Case Diagram">
+            </div>
+            <div class="question" onclick="toggleStatus(this)">Explain Use Case.</div>
+            <div class="question" onclick="toggleStatus(this)">Explain Use Case Diagrams.</div>
+            <div class="question" onclick="toggleStatus(this)">What is an Actor?</div>
+            <div class="question" onclick="toggleStatus(this)">What is System Boundary?</div>
+            <div class="question" onclick="toggleStatus(this)">What is Include in use case diagram?</div>
+            <div class="question" onclick="toggleStatus(this)">Explain various relationships in use case diagram with example.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">State Diagram</h3>
+            <div class="diagram-section">
+                <div class="diagram-title">State Diagram Reference</div>
+                <img src="State_Diagram.jpg" alt="State Diagram">
+            </div>
+            <div class="question" onclick="toggleStatus(this)">Draw State diagram for telephone line connection. Give meaning of Event, State and transition.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw State Diagram for cash Dispenser and explain concurrency.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Activity Diagram</h3>
+            <div class="diagram-section">
+                <div class="diagram-title">Activity Diagram Reference</div>
+                <img src="Ativity_Diagram.jpg" alt="Activity Diagram">
+            </div>
+            <div class="question" onclick="toggleStatus(this)">What is activity?</div>
+            <div class="question" onclick="toggleStatus(this)">Identify and explain three activities in ATM system.</div>
+            <div class="question" onclick="toggleStatus(this)">Identify five activities involved in ATM system scenario.</div>
+            <div class="question" onclick="toggleStatus(this)">Prepare activity diagram for Logging into email system.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw ACTIVITY diagram for selling two wheeler to customer at dealers Place.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw Activity Diagram for ATM Machine.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw Activity diagram for Hospital Management System.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Use Case Diagram - Examples</h3>
+            <div class="question" onclick="toggleStatus(this)">Write the Use case description for Buying a beverage.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw and explain use case diagram for ATM system with scenarios.</div>
+            <div class="question" onclick="toggleStatus(this)">Design use case diagram for online reservation system.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Sequence Diagram</h3>
+            <div class="question" onclick="toggleStatus(this)">What is Sequence model? Explain with suitable example.</div>
+            <div class="question" onclick="toggleStatus(this)">What is Interaction Diagram? Explain Different Components of Sequence diagram.</div>
+            <div class="question" onclick="toggleStatus(this)">Discuss components of sequence diagram.</div>
+            <div class="question" onclick="toggleStatus(this)">Model a SEQUENCE diagram for 'Rent a Car' in car rental application.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw a detailed sequence diagram for Online Shopping.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw Sequence diagram for ATM Machine (Complete view).</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Composite States</h3>
+            <div class="question" onclick="toggleStatus(this)">What are Composite states? Explain Categories of Composite states.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Class Model and State Model Relationship</h3>
+            <div class="question" onclick="toggleStatus(this)">State the relationship between class and state model.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Sequence vs Activity Diagram</h3>
+            <div class="question" onclick="toggleStatus(this)">Compare Sequence diagram and Activity diagram.</div>
+        </div>
+
+        <h2>Unit 4</h2>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Reuse Plan (Framework, Pattern, Library)</h3>
+            <div class="question" onclick="toggleStatus(this)">Define Reuse plan. Explain Framework and Pattern with respect to reuse plan.</div>
+            <div class="question" onclick="toggleStatus(this)">Define Reuse Plan. Explain Library, Framework, Pattern.</div>
+            <div class="question" onclick="toggleStatus(this)">Illustrate different reuse things considered during modelling a system.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">External Control Strategies</h3>
+            <div class="question" onclick="toggleStatus(this)">What are the different Software Control Strategy used in system design?</div>
+            <div class="question" onclick="toggleStatus(this)">What are different categories of external control? Explain in Detail.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Subsystems</h3>
+            <div class="question" onclick="toggleStatus(this)">What is sub system in system design? How to organize system into subsystems?</div>
+            <div class="question" onclick="toggleStatus(this)">What is sub system? Explain breaking system into subsystems and allocation.</div>
+            <div class="question" onclick="toggleStatus(this)">Illustrate what is Subsystem along with ways Subsystems can communicate.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Data Storage Management</h3>
+            <div class="question" onclick="toggleStatus(this)">While designing a system explain how data storage management is designed.</div>
+            <div class="question" onclick="toggleStatus(this)">Explain data storage management in software modelling.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Global Resource Handling</h3>
+            <div class="question" onclick="toggleStatus(this)">How Global Resources are Handled while System design?</div>
+            <div class="question" onclick="toggleStatus(this)">Explain Global resource handling.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Architecture Styles</h3>
+            <div class="question" onclick="toggleStatus(this)">Write a short note on: Architecture style.</div>
+            <div class="question" onclick="toggleStatus(this)">What are different architecture styles. Draw Architecture of ATM system.</div>
+            <div class="question" onclick="toggleStatus(this)">Discuss different architectural styles.</div>
+            <div class="question" onclick="toggleStatus(this)">Enlist architectural styles. Explain any Four in detail.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Deployment Diagram</h3>
+            <div class="diagram-section">
+                <div class="diagram-title">Deployment Diagram Reference</div>
+                <img src="Deployment_Diagram.jpg" alt="Deployment Diagram">
+            </div>
+            <div class="question" onclick="toggleStatus(this)">Explain Node, Association, Dependency with respect to deployment diagram.</div>
+            <div class="question" onclick="toggleStatus(this)">Draw Deployment diagram for ATM System.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Batch Transformation and Continuous Transformation</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain: Batch Transformation and Continuous Transformation.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Component Diagram</h3>
+            <div class="diagram-section">
+                <div class="diagram-title">Component Diagram Reference</div>
+                <img src="Component_Diagram.jpg" alt="Component Diagram">
+            </div>
+            <div class="question" onclick="toggleStatus(this)">Explain in detail components of a component diagram.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">System Performance Estimation</h3>
+            <div class="question" onclick="toggleStatus(this)">Write a short note on: System performance estimation.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Interactive Interface, Dynamic Simulation, Real-time, Transaction Manager</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain: Interactive interface, Dynamic simulation, Real time system, Transaction manager.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Application Class Model</h3>
+            <div class="question" onclick="toggleStatus(this)">Discuss steps involved in constructing Application class model with example.</div>
+        </div>
+
+        <h2>Unit 5</h2>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Adjustment of Inheritance</h3>
+            <div class="question" onclick="toggleStatus(this)">How adjustment of inheritance is done in class design? Explain.</div>
+            <div class="question" onclick="toggleStatus(this)">What is importance of adjustment of inheritance? Discuss the steps.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Design Optimization</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain the tasks involved in design optimization.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Steps in Class Design</h3>
+            <div class="question" onclick="toggleStatus(this)">Write short note on: Steps involved in organizing Class Design.</div>
+            <div class="question" onclick="toggleStatus(this)">What are steps in class design? Bridge gap from high level requirement to low level services.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Identify Use Cases and Actors</h3>
+            <div class="question" onclick="toggleStatus(this)">Discuss how you identify use cases and actors with respect to use case diagrams?</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Refactoring and Reification</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain Refactoring and Reification in relation to class design.</div>
+            <div class="question" onclick="toggleStatus(this)">Write short note on: Refactoring.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Data Dictionary</h3>
+            <div class="question" onclick="toggleStatus(this)">Write short note on Data Dictionary.</div>
+            <div class="question" onclick="toggleStatus(this)">Prepare a data dictionary for ATM system scenario. Explain each element.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Finding and Defining Classes</h3>
+            <div class="diagram-section">
+                <div class="diagram-title">Class Diagram Reference</div>
+                <img src="Class_Diagram.jpg" alt="Class Diagram">
+            </div>
+            <div class="question" onclick="toggleStatus(this)">Give detailed guidelines for finding and defining classes in software system.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Dependencies in Package</h3>
+            <div class="question" onclick="toggleStatus(this)">List and Explain different types of dependencies in package.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">System Design</h3>
+            <div class="question" onclick="toggleStatus(this)">What do you mean by system design? Illustrate with suitable example.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Scenario</h3>
+            <div class="question" onclick="toggleStatus(this)">What do you mean by scenario? What is the purpose of defining scenario? Explain.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Activity Diagram from Use Case Diagram</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain process of preparing Activity Diagram from Use case Diagram.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Fine Tuning Generalization and Realizing Associations</h3>
+            <div class="question" onclick="toggleStatus(this)">Draw a class model by using Fine tuning Generalization and Realizing associations.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Design Algorithms</h3>
+            <div class="question" onclick="toggleStatus(this)">What are the steps to design algorithms? Explain in detail.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Reverse Engineering</h3>
+            <div class="question" onclick="toggleStatus(this)">Define Reverse engineering. What are inputs and outputs from reverse engineering?</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Implementation Modeling</h3>
+            <div class="question" onclick="toggleStatus(this)">What are the steps involves in implementation modeling? Explain in detail.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Wrapping and Maintenance</h3>
+            <div class="question" onclick="toggleStatus(this)">Write short note on: Wrapping and Maintenance.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Abstraction</h3>
+            <div class="question" onclick="toggleStatus(this)">What is abstraction? Explain different categories of abstraction.</div>
+        </div>
+
+        <h2>Unit 6</h2>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Elements/Entities of Design Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">State and explain the entities involved in a design pattern.</div>
+            <div class="question" onclick="toggleStatus(this)">Explain different Elements of Design Patterns.</div>
+            <div class="question" onclick="toggleStatus(this)">Explain three important parts of design pattern.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Communication Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">What is communication pattern? Explain any one in detail.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Design Pattern - Types</h3>
+            <div class="question" onclick="toggleStatus(this)">What is Design Pattern?</div>
+            <div class="question" onclick="toggleStatus(this)">What is Pattern? Discuss pattern categories in detail.</div>
+            <div class="question" onclick="toggleStatus(this)">Explain different types of design Patterns.</div>
+            <div class="question" onclick="toggleStatus(this)">Explain in Detail Design Pattern.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Counted Pointer</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain counted pointer example in detailed.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">View Handler Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">What is view handler pattern? Explain in detail.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Client-Dispatcher-Server Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain about Client-Dispatcher-Server design pattern.</div>
+            <div class="question" onclick="toggleStatus(this)">Write short note on: Client Dispatcher server.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Publisher-Subscriber Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">Discuss structure and variants of the Publisher-Subscriber design pattern.</div>
+            <div class="question" onclick="toggleStatus(this)">Write short note on: Publisher subscriber.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Strategy Design Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain: Strategy Design Pattern.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Pattern Categories (Creational, Structural, Behavioral)</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain: Creational pattern, Structural Pattern, Behavioral Pattern.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Observer Design Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain Observer design pattern.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">State Design Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">Explain State design Pattern.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Adapter Design Pattern</h3>
+            <div class="question" onclick="toggleStatus(this)">Discuss Adapter Design Pattern.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Relationships Between Patterns</h3>
+            <div class="question" onclick="toggleStatus(this)">Show and explain relationships between patterns.</div>
+        </div>
+
+        <div class="topic">
+            <h3 onclick="toggleStatus(this)">Idioms</h3>
+            <div class="question" onclick="toggleStatus(this)">Define Idioms. What can Idioms provide? Where to find Idioms?</div>
+        </div>
+
+    </div>
+
+    <script>
+        // Load saved progress from localStorage
+        window.addEventListener('load', function() {
+            loadProgress();
+            updateStats();
+        });
+
+        function toggleStatus(element) {
+            // Cycle through: none -> done -> review -> highlight -> none
+            if (element.classList.contains('done')) {
+                element.classList.remove('done');
+                element.classList.add('review');
+            } else if (element.classList.contains('review')) {
+                element.classList.remove('review');
+                element.classList.add('highlight');
+            } else if (element.classList.contains('highlight')) {
+                element.classList.remove('highlight');
+            } else {
+                element.classList.add('done');
+            }
+            
+            saveProgress();
+            updateStats();
+        }
+
+        function saveProgress() {
+            const elements = document.querySelectorAll('.question, h3');
+            const progress = {};
+            
+            elements.forEach((element, index) => {
+                if (element.classList.contains('done')) {
+                    progress[index] = 'done';
+                } else if (element.classList.contains('review')) {
+                    progress[index] = 'review';
+                } else if (element.classList.contains('highlight')) {
+                    progress[index] = 'highlight';
+                }
+            });
+            
+            localStorage.setItem('oomdProgress', JSON.stringify(progress));
+        }
+
+        function loadProgress() {
+            const progress = JSON.parse(localStorage.getItem('oomdProgress') || '{}');
+            const elements = document.querySelectorAll('.question, h3');
+            
+            elements.forEach((element, index) => {
+                if (progress[index] === 'done') {
+                    element.classList.add('done');
+                } else if (progress[index] === 'review') {
+                    element.classList.add('review');
+                } else if (progress[index] === 'highlight') {
+                    element.classList.add('highlight');
+                }
+            });
+        }
+
+        function updateStats() {
+            const questions = document.querySelectorAll('.question');
+            const total = questions.length;
+            const done = document.querySelectorAll('.question.done').length;
+            const review = document.querySelectorAll('.question.review').length;
+            const remaining = total - done - review;
+            
+            document.getElementById('total').textContent = total;
+            document.getElementById('done').textContent = done;
+            document.getElementById('review').textContent = review;
+            document.getElementById('remaining').textContent = remaining;
+        }
+
+        function resetAll() {
+            if (confirm('Are you sure you want to reset all progress?')) {
+                localStorage.removeItem('oomdProgress');
+                const elements = document.querySelectorAll('.question, h3');
+                elements.forEach(element => {
+                    element.classList.remove('done', 'review', 'highlight');
+                });
+                updateStats();
+            }
+        }
+    </script>
+</body>
+</html>

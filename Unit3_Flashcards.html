@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 3 - OOMD Study Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        
+        .navbar { background: rgba(255,255,255,0.95); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        
+        .navbar-content { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .nav-link { color: #333; text-decoration: none; padding: 10px 20px; border-radius: 5px; background: #f0f0f0; transition: all 0.3s ease; font-weight: 600; }
+        
+        .nav-link:hover { background: #667eea; color: white; transform: translateY(-2px); }
+        
+        .nav-link.active { background: #667eea; color: white; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px 30px 20px; }
+        
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        
+        .header h1 { font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 10px; }
+        
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        .section-title { color: #667eea; font-size: 1.5em; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid #667eea; }
+        
+        .topic { margin-bottom: 25px; }
+        
+        .question { color: #d32f2f; font-weight: 600; font-size: 1.1em; margin-bottom: 10px; }
+        
+        .answer { color: #333; line-height: 1.8; margin-left: 15px; }
+        
+        .answer ul { list-style: none; padding: 0; }
+        
+        .answer li { padding: 8px 0; padding-left: 20px; position: relative; }
+        
+        .answer li::before { content: "▸"; color: #667eea; font-weight: bold; position: absolute; left: 0; }
+        
+        .highlight { background: #fff9c4; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        
+        th, td { border: 2px solid #667eea; padding: 12px; text-align: left; }
+        
+        th { background: #667eea; color: white; font-weight: 600; }
+        
+        tr:nth-child(even) { background: #f5f5f5; }
+        
+        .diagram-box { background: #f9f9f9; padding: 15px; border-radius: 8px; border: 2px solid #667eea; text-align: center; margin: 15px 0; }
+        
+        .diagram-box img { max-width: 100%; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="OOMD_Checker.html" class="nav-link">🏠 Home Checker</a>
+            <a href="Unit3_Flashcards.html" class="nav-link active">📚 Unit 3</a>
+            <a href="Unit4_Flashcards.html" class="nav-link">📚 Unit 4</a>
+            <a href="Unit5_Flashcards.html" class="nav-link">📚 Unit 5</a>
+            <a href="Unit6_Flashcards.html" class="nav-link">📚 Unit 6</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="header">
+            <h1>📚 UNIT 3 STUDY GUIDE</h1>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Use Case Diagram</div>
+
+            <div class="diagram-box">
+                <img src="UseCase_Diagram.jpg" alt="Use Case Diagram">
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is Use Case?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Use Case:</span> Sequence of actions performed by system that produces observable result of value to actor</li>
+                        <li><strong>Key Characteristics:</strong></li>
+                        <li>• Describes functional requirements</li>
+                        <li>• Focuses on external behavior of system</li>
+                        <li>• Written from user's perspective</li>
+                        <li>• Independent of implementation details</li>
+                        <li><strong>Components:</strong> Use Case Name, Actor, Pre-condition, Post-condition, Main Flow, Alternative Flow</li>
+                        <li><strong>Importance:</strong> Helps in requirement gathering, acts as base for test cases, improves communication with stakeholders</li>
+                        <li><strong>Example:</strong> Withdraw Cash, Login, Place Order</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is Use Case Diagram?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Use Case Diagram:</span> UML diagram representing relationship between users (actors) and system functionalities (use cases)</li>
+                        <li><strong>Elements:</strong></li>
+                        <li>1. Actor</li>
+                        <li>2. Use Case</li>
+                        <li>3. System Boundary</li>
+                        <li>4. Relationships (Include, Extend, Generalization)</li>
+                        <li><strong>Purpose:</strong></li>
+                        <li>• Captures system requirements graphically</li>
+                        <li>• Provides high-level system overview</li>
+                        <li>• Easy to understand by non-technical users</li>
+                        <li>• Helps identify system scope</li>
+                        <li><strong>Features:</strong> Does not show internal logic, represents what system does (not how), one diagram can contain multiple use cases</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is an Actor?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Actor:</span> Role played by user, system, or device that interacts with the system</li>
+                        <li><strong>Characteristics:</strong></li>
+                        <li>• Always outside system boundary</li>
+                        <li>• Can be human or another system</li>
+                        <li>• Represents a role, not a person</li>
+                        <li>• Can interact with multiple use cases</li>
+                        <li><strong>Types of Actors:</strong></li>
+                        <li>1. <strong>Primary Actor:</strong> Initiates interaction (e.g., Customer)</li>
+                        <li>2. <strong>Secondary Actor:</strong> Supports system (e.g., Bank Server)</li>
+                        <li><strong>Representation:</strong> Shown as stick figure, named clearly</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is System Boundary?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">System Boundary:</span> Rectangle that encloses all use cases of a system, indicating what is part of the system</li>
+                        <li><strong>Purpose:</strong></li>
+                        <li>• Defines system limits</li>
+                        <li>• Clarifies system responsibilities</li>
+                        <li>• Helps avoid scope confusion</li>
+                        <li><strong>Characteristics:</strong></li>
+                        <li>• Actors remain outside</li>
+                        <li>• Use cases remain inside</li>
+                        <li>• Represents a single system</li>
+                        <li><strong>Importance:</strong> Prevents requirement creep, clearly distinguishes internal vs external functions</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is Include in Use Case Diagram?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Include Relationship:</span> One use case always uses another use case as part of its execution</li>
+                        <li><strong>Notation:</strong></li>
+                        <li>• Shown using dashed arrow</li>
+                        <li>• Labeled with &lt;&lt;include&gt;&gt;</li>
+                        <li>• Arrow points to included use case</li>
+                        <li><strong>When to Use:</strong></li>
+                        <li>• To avoid duplication</li>
+                        <li>• When a function is common and mandatory</li>
+                        <li>• Improves modularity</li>
+                        <li><strong>Example:</strong> "Withdraw Cash" includes "Authenticate User" - Every time you withdraw cash, authentication must happen</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Various Relationships in Use Case Diagram</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Relationship</th>
+                            <th>Description</th>
+                            <th>Notation</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Association</strong></td>
+                            <td>Communication link between actor and use case</td>
+                            <td>Simple solid line</td>
+                            <td>Customer — Withdraw Cash</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Include</strong></td>
+                            <td>Mandatory reuse of behavior</td>
+                            <td>Dashed arrow with &lt;&lt;include&gt;&gt;</td>
+                            <td>Withdraw Cash includes Authenticate User</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extend</strong></td>
+                            <td>Optional or conditional behavior</td>
+                            <td>Dashed arrow with &lt;&lt;extend&gt;&gt;</td>
+                            <td>Apply Discount extends Purchase Item</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Generalization (Actor)</strong></td>
+                            <td>Inheritance between actors - child inherits parent behavior</td>
+                            <td>Solid line with hollow arrow</td>
+                            <td>Admin inherits from User</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Generalization (Use Case)</strong></td>
+                            <td>Specialized version of use case</td>
+                            <td>Solid line with hollow arrow</td>
+                            <td>Online Payment specializes Payment</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><strong>Summary:</strong></li>
+                        <li>• <strong>Association:</strong> Who uses what</li>
+                        <li>• <strong>Include:</strong> Must happen</li>
+                        <li>• <strong>Extend:</strong> Happens sometimes</li>
+                        <li>• <strong>Generalization:</strong> Inheritance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">State Diagram</div>
+
+            <div class="diagram-box">
+                <img src="State_Diagram.jpg" alt="State Diagram">
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is State Diagram?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">State Diagram:</span> UML diagram representing dynamic behavior of an object by showing its states and transitions based on events</li>
+                        <li>Models reactive systems and state-dependent behavior</li>
+                        <li><strong>Key Elements:</strong></li>
+                        <li>• States (rounded rectangles)</li>
+                        <li>• Events (triggers)</li>
+                        <li>• Transitions (directed arrows)</li>
+                        <li>• Initial state (filled black circle)</li>
+                        <li>• Final state (bull's-eye)</li>
+                        <li><strong>Importance:</strong> Models call lifecycle clearly, useful for telecommunication & real-time systems, helps detect invalid transitions</li>
+                        <li><strong>Example:</strong> Telephone line (Idle → DialTone → Dialing → Ringing → Connected)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Explain State, Event, and Transition (using Telephone Line Diagram)</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1. STATE:</strong></li>
+                        <li><span class="highlight">Definition:</span> Condition or situation in which an object exists for a period of time and performs certain activities</li>
+                        <li><strong>Examples from Telephone Diagram:</strong></li>
+                        <li>• Idle – Telephone line is free, handset on hook</li>
+                        <li>• DialTone – Dial tone provided after receiver lifted</li>
+                        <li>• Dialing – User entering digits</li>
+                        <li>• Ringing – Called phone is ringing</li>
+                        <li>• Connected – Call is established</li>
+                        <li>• BusyTone / FastBusyTone – Line or trunk is busy</li>
+                        <li>• Disconnected – Call is terminated</li>
+                    </ul>
+                    <ul>
+                        <li><strong>2. EVENT:</strong></li>
+                        <li><span class="highlight">Definition:</span> Occurrence that triggers a change from one state to another</li>
+                        <li><strong>Examples from Telephone Diagram:</strong></li>
+                        <li>• offHook – User lifts receiver</li>
+                        <li>• onHook – User places receiver back</li>
+                        <li>• digit[n] – User dials a digit</li>
+                        <li>• validNumber – Dialed number is valid</li>
+                        <li>• timeout – No user activity</li>
+                        <li>• calledPhoneAnswers – Receiver picked by called party</li>
+                        <li>• calledPhoneHangsUp – Called party disconnects</li>
+                    </ul>
+                    <ul>
+                        <li><strong>3. TRANSITION:</strong></li>
+                        <li><span class="highlight">Definition:</span> Movement of system from one state to another due to occurrence of an event</li>
+                        <li><strong>Examples from Telephone Diagram:</strong></li>
+                        <li>• Idle → DialTone (on offHook)</li>
+                        <li>• DialTone → Dialing (on digit[n])</li>
+                        <li>• Dialing → BusyTone (on numberBusy)</li>
+                        <li>• Dialing → Connecting (on validNumber)</li>
+                        <li>• Ringing → Connected (on calledPhoneAnswers)</li>
+                        <li>• Connected → Disconnected (on calledPhoneHangsUp)</li>
+                        <li><strong>Notation:</strong> Source State --(Event)--> Target State</li>
+                    </ul>
+                    <table>
+                        <tr>
+                            <th>Concept</th>
+                            <th>What it describes</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>State</strong></td>
+                            <td>What stage the phone is in</td>
+                            <td>Idle, Ringing, Connected</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Event</strong></td>
+                            <td>What action happens</td>
+                            <td>Lift receiver, Dial number, Hang up</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transition</strong></td>
+                            <td>Movement from one stage to another</td>
+                            <td>Idle → (offHook) → DialTone</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><strong>Relationship:</strong> State describes system condition → Event triggers a change → Transition connects two states due to an event</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What are Composite States? Explain Categories</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Composite State:</span> State that contains one or more nested states (substates) within it</li>
+                        <li>Allows hierarchical modeling, reducing complexity</li>
+                        <li><strong>Key Points:</strong> Used when system state is too complex, represents group of related states, can contain transitions/events/actions, improves modularity</li>
+                    </ul>
+                    <table>
+                        <tr>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Characteristics</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Sequential (Non-Concurrent)</strong></td>
+                            <td>Only one substate active at a time</td>
+                            <td>Single flow, substates execute one after another, uses initial node</td>
+                            <td>Call Handling: Dialing → Ringing → Connected</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Concurrent (Parallel)</strong></td>
+                            <td>Multiple substates active simultaneously</td>
+                            <td>Parallel execution, divided into regions (dashed lines), uses fork & join</td>
+                            <td>ATM Transaction: Dispense Cash + Print Receipt + Update Account</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><strong>Importance:</strong> Reduces diagram complexity, supports hierarchical modeling, improves clarity, useful for complex systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Relationship Between Class and State Model</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Class Model:</span> Static structure | <span class="highlight">State Model:</span> Dynamic behavior</li>
+                        <li><strong>Key Relationships:</strong></li>
+                        <li>1. <strong>Class Defines Object:</strong> State model is always associated with a class; describes behavior of class instances</li>
+                        <li>2. <strong>States = Attribute Values:</strong> States represent conditions based on class attributes (e.g., status = "Shipped" → Shipped State)</li>
+                        <li>3. <strong>Events = Class Operations:</strong> Events triggered by operations/methods of class (e.g., confirmOrder() triggers New → Confirmed)</li>
+                        <li>4. <strong>Transitions = State Changes:</strong> Caused by invoking class methods (e.g., cancelOrder() moves Confirmed → Cancelled)</li>
+                        <li>5. <strong>State Model Defines Valid Order:</strong> Restricts when certain methods can execute (e.g., deliverOrder() cannot be called before shipOrder())</li>
+                        <li>6. <strong>Actions Implement Behavior:</strong> Entry/exit/do-actions in states implemented using class methods</li>
+                        <li>7. <strong>Complements Views:</strong> Class Model → What system is (attributes, operations) | State Model → How system behaves over time</li>
+                        <li><strong>Importance:</strong> Ensures consistency, helps correct implementation, improves maintainability, avoids invalid state transitions</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Activity Diagram</div>
+
+            <div class="diagram-box">
+                <img src="Activity_Diagram.jpg" alt="Activity Diagram">
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is Activity?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Activity:</span> Unit of work performed during execution of a system</li>
+                        <li>Represents behavior that executes a set of actions in particular sequence</li>
+                        <li><strong>Characteristics:</strong></li>
+                        <li>• Represents dynamic behavior</li>
+                        <li>• Focuses on flow of control</li>
+                        <li>• Can be sequential or concurrent</li>
+                        <li>• Used in Activity Diagrams</li>
+                        <li><strong>Elements Associated:</strong> Initial Node, Activity/Action State, Decision Node, Fork & Join, Final Node</li>
+                        <li><strong>Importance:</strong> Models business workflows, helps understand system processes, useful for requirement analysis</li>
+                        <li><strong>Example:</strong> Insert Card, Validate Login, Dispense Cash</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Activities in ATM System</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Five Key Activities:</strong></li>
+                        <li>1. <strong>Insert ATM Card:</strong> ATM reads card details, verifies card validity</li>
+                        <li>2. <strong>Enter PIN:</strong> User enters PIN</li>
+                        <li>3. <strong>Validate PIN:</strong> System validates PIN with bank server</li>
+                        <li>4. <strong>Select Transaction:</strong> User chooses operation (withdraw, balance, etc.)</li>
+                        <li>5. <strong>Dispense Cash:</strong> Requested amount checked, cash dispensed to user</li>
+                        <li><strong>Additional Activities:</strong> Update Account Balance, Print Receipt, Eject Card</li>
+                        <li><strong>Process:</strong> Card → PIN → Option → Cash → Receipt (step-by-step)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is Activity Diagram?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Activity Diagram:</span> Shows workflow of stepwise activities and actions</li>
+                        <li>Models process flow, control flow, and business workflows</li>
+                        <li>Similar to flowchart but object-oriented</li>
+                        <li><strong>Elements:</strong> Initial node (●), Activities (rounded rectangles), Decision nodes (◇), Fork/Join (thick bars), Final node (◎)</li>
+                        <li><strong>Focus:</strong> What actions are performed and how they flow</li>
+                        <li><strong>Use Cases:</strong> Business processes, algorithm flows, parallel processing, workflow modeling</li>
+                        <li><strong>Advantages:</strong> Easy to understand, shows parallel activities clearly, suitable for business modeling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Activity Diagram Components</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Symbol</th>
+                            <th>Purpose</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Initial Node</strong></td>
+                            <td>Starting point of workflow</td>
+                            <td>Filled black circle ●</td>
+                            <td>Marks beginning</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Activity/Action</strong></td>
+                            <td>Single step or task</td>
+                            <td>Rounded rectangle</td>
+                            <td>Represents work unit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Decision Node</strong></td>
+                            <td>Conditional branching</td>
+                            <td>Diamond ◇</td>
+                            <td>Choice based on condition</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Fork</strong></td>
+                            <td>Split into parallel activities</td>
+                            <td>Thick horizontal bar</td>
+                            <td>Start concurrent execution</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Join</strong></td>
+                            <td>Merge parallel activities</td>
+                            <td>Thick horizontal bar</td>
+                            <td>Synchronize threads</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Final Node</strong></td>
+                            <td>End point of workflow</td>
+                            <td>Circle with dot ◎</td>
+                            <td>Marks completion</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Sequence Diagram</div>
+
+            <div class="topic">
+                <div class="question">Q: What is Sequence Model/Diagram?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Sequence Model:</span> Represents time-ordered interaction between objects in a system</li>
+                        <li>Shows how objects communicate with each other in specific sequence to complete functionality</li>
+                        <li><strong>Characteristics:</strong></li>
+                        <li>• Emphasizes order of messages</li>
+                        <li>• Shows object collaboration</li>
+                        <li>• Models dynamic behavior</li>
+                        <li>• Used during design phase</li>
+                        <li><strong>Purpose:</strong> Understand object responsibilities, validate logic flow, identify missing interactions</li>
+                        <li><strong>Focus:</strong> Message exchange between objects (who talks to whom and in what order)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Components of Sequence Diagram</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Representation</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Actor</strong></td>
+                            <td>External entity interacting with system</td>
+                            <td>Stick figure</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Object</strong></td>
+                            <td>Participating system components</td>
+                            <td>Rectangle at top</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lifeline</strong></td>
+                            <td>Vertical dashed line showing object existence over time</td>
+                            <td>Dashed vertical line</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Message</strong></td>
+                            <td>Communication between objects</td>
+                            <td>Horizontal arrow (solid)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Activation Bar</strong></td>
+                            <td>Shows execution period/duration when object is active</td>
+                            <td>Thin rectangle on lifeline</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Return Message</strong></td>
+                            <td>Shows response/result from called object</td>
+                            <td>Dashed arrow</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Control Flow</strong></td>
+                            <td>Order of messages (top-to-bottom)</td>
+                            <td>Sequence of arrows</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><strong>Importance:</strong> Clarifies system behavior, helps in code design, reduces ambiguity</li>
+                        <li><strong>Each component shows:</strong> Who is involved, what they do, when they do it</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Compare Sequence Diagram and Activity Diagram</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Sequence Diagram</th>
+                            <th>Activity Diagram</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Definition</strong></td>
+                            <td>Represents interaction between objects in time sequence</td>
+                            <td>Represents flow of activities or actions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td>Message exchange between objects</td>
+                            <td>Workflow and control flow</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Primary Usage</strong></td>
+                            <td>Shows how objects communicate</td>
+                            <td>Shows how a process flows</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Time Aspect</strong></td>
+                            <td>Time shown top-to-bottom explicitly</td>
+                            <td>Time is implicit</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Main Elements</strong></td>
+                            <td>Objects, Lifelines, Messages, Activation bars</td>
+                            <td>Activities, Decision nodes, Fork/Join</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Representation</strong></td>
+                            <td>Vertical lifelines with horizontal messages</td>
+                            <td>Flowchart-like diagram</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Concurrency</strong></td>
+                            <td>Limited (using combined fragments)</td>
+                            <td>Clearly shown using fork and join</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Best Used For</strong></td>
+                            <td>Detailed object interaction</td>
+                            <td>Business processes and workflows</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Complexity</strong></td>
+                            <td>More detailed and technical</td>
+                            <td>Simpler and more intuitive</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Level of Abstraction</strong></td>
+                            <td>Low-level (design level)</td>
+                            <td>High-level (analysis level)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Orientation</strong></td>
+                            <td>Object-oriented</td>
+                            <td>Process-oriented</td>
+                        </tr>
+                    </table>
+                    <ul>
+                        <li><strong>Summary:</strong></li>
+                        <li>• <strong>Sequence Diagram:</strong> Conversation between objects, who talks to whom and when</li>
+                        <li>• <strong>Activity Diagram:</strong> Flow of steps in a process, what happens step-by-step</li>
+                        <li><strong>When to Use:</strong> Sequence diagrams for detailed object interaction, Activity diagrams for workflow and process modeling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

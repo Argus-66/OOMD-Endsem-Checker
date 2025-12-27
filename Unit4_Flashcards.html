@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 4 - OOMD Study Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        
+        .navbar { background: rgba(255,255,255,0.95); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        
+        .navbar-content { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .nav-link { color: #333; text-decoration: none; padding: 10px 20px; border-radius: 5px; background: #f0f0f0; transition: all 0.3s ease; font-weight: 600; }
+        
+        .nav-link:hover { background: #667eea; color: white; transform: translateY(-2px); }
+        
+        .nav-link.active { background: #667eea; color: white; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px 30px 20px; }
+        
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        
+        .header h1 { font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 10px; }
+        
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        .section-title { color: #667eea; font-size: 1.5em; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid #667eea; }
+        
+        .topic { margin-bottom: 25px; }
+        
+        .question { color: #d32f2f; font-weight: 600; font-size: 1.1em; margin-bottom: 10px; }
+        
+        .answer { color: #333; line-height: 1.8; margin-left: 15px; }
+        
+        .answer ul { list-style: none; padding: 0; }
+        
+        .answer li { padding: 8px 0; padding-left: 20px; position: relative; }
+        
+        .answer li::before { content: "▸"; color: #667eea; font-weight: bold; position: absolute; left: 0; }
+        
+        .highlight { background: #fff9c4; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        
+        th, td { border: 2px solid #667eea; padding: 12px; text-align: left; }
+        
+        th { background: #667eea; color: white; font-weight: 600; }
+        
+        tr:nth-child(even) { background: #f5f5f5; }
+        
+        .diagram-box { background: #f9f9f9; padding: 15px; border-radius: 8px; border: 2px solid #667eea; text-align: center; margin: 15px 0; }
+        
+        .diagram-box img { max-width: 100%; border-radius: 5px; box-shadow: 0 2px 8px rgba(0,0,0,0.2); }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="OOMD_Checker.html" class="nav-link">🏠 Home Checker</a>
+            <a href="Unit3_Flashcards.html" class="nav-link">📚 Unit 3</a>
+            <a href="Unit4_Flashcards.html" class="nav-link active">📚 Unit 4</a>
+            <a href="Unit5_Flashcards.html" class="nav-link">📚 Unit 5</a>
+            <a href="Unit6_Flashcards.html" class="nav-link">📚 Unit 6</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="header">
+            <h1>📚 UNIT 4 STUDY GUIDE</h1>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Reuse Plan</div>
+
+            <div class="topic">
+                <div class="question">Q: Define Reuse Plan. Explain Library, Framework, Pattern</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Reuse Plan:</span> Strategy to use existing components instead of building from scratch</li>
+                    </ul>
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Definition</th>
+                            <th>Example</th>
+                            <th>Control</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Library</strong></td>
+                            <td>Collection of pre-written functions/classes</td>
+                            <td>Math library, String library</td>
+                            <td>You call library</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Framework</strong></td>
+                            <td>Reusable architecture providing skeleton</td>
+                            <td>Spring, Django</td>
+                            <td>Framework calls you</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pattern</strong></td>
+                            <td>Reusable solution template</td>
+                            <td>Singleton, Observer</td>
+                            <td>Design template</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">External Control Strategies</div>
+
+            <div class="topic">
+                <div class="question">Q: Software Control Strategies & External Control Categories</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Control Type</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Interactive Interface</strong></td>
+                            <td>User-driven through GUI (event-driven)</td>
+                            <td>Desktop applications, Web apps</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Real-Time System</strong></td>
+                            <td>Responds within strict time constraints</td>
+                            <td>Embedded systems, Control systems</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Transaction Manager</strong></td>
+                            <td>Manages database transactions (ACID)</td>
+                            <td>Banking systems, E-commerce</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dynamic Simulation</strong></td>
+                            <td>Models real-world behavior over time</td>
+                            <td>Flight simulators, Training systems</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Subsystems</div>
+
+            <div class="topic">
+                <div class="question">Q: What is Subsystem? How to organize?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Subsystem:</span> Package of classes working together for common purpose</li>
+                        <li><strong>Organization Methods:</strong></li>
+                        <li>1. By Layers: Presentation → Business Logic → Data Access</li>
+                        <li>2. By Function: User Management, Payment, Reporting</li>
+                        <li>3. By Domain: Customer, Product, Order modules</li>
+                        <li><strong>Communication:</strong> Direct calls, Message passing, Shared data, Events</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Data Storage Management</div>
+
+            <div class="topic">
+                <div class="question">Q: Explain Data Storage Management</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Deciding HOW and WHERE</span> to store data persistently</li>
+                        <li><strong>Considerations:</strong></li>
+                        <li>1. Data Format: Structured (tables) vs Unstructured (files)</li>
+                        <li>2. Access Patterns: Random vs Sequential</li>
+                        <li>3. Volume: Amount of data</li>
+                        <li>4. Performance: Read/Write speed</li>
+                        <li>5. Persistence: Temporary vs Permanent</li>
+                        <li>6. Security: Encryption, access control</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Global Resource Handling</div>
+
+            <div class="topic">
+                <div class="question">Q: How are Global Resources Handled?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Global Resources:</span> Shared entities accessed by multiple parts</li>
+                        <li><strong>Handling Strategies:</strong></li>
+                        <li>1. Singleton Pattern: Single instance accessible globally</li>
+                        <li>2. Resource Pooling: Reuse limited resources (connection pools)</li>
+                        <li>3. Synchronization: Control concurrent access (locks, semaphores)</li>
+                        <li>4. Resource Manager: Centralized allocation/deallocation control</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Architecture Styles</div>
+
+            <div class="topic">
+                <div class="question">Q: Different Architecture Styles</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Style</th>
+                            <th>Description</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Layered</strong></td>
+                            <td>Organized in horizontal layers</td>
+                            <td>Web apps (UI → Logic → Data)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Client-Server</strong></td>
+                            <td>Clients request services from server</td>
+                            <td>Web browser & web server</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Pipe-and-Filter</strong></td>
+                            <td>Data flows through processing filters</td>
+                            <td>Unix commands piped together</td>
+                        </tr>
+                        <tr>
+                            <td><strong>MVC</strong></td>
+                            <td>Separates Model, View, Controller</td>
+                            <td>Django, Rails frameworks</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Microservices</strong></td>
+                            <td>Independent, loosely coupled services</td>
+                            <td>Modern cloud applications</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Event-Driven</strong></td>
+                            <td>Components communicate through events</td>
+                            <td>Notification systems</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Deployment Diagram</div>
+
+            <div class="diagram-box">
+                <img src="Deployment_Diagram.jpg" alt="Deployment Diagram">
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Explain Node, Association, Dependency in Deployment Diagram</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Element</th>
+                            <th>Description</th>
+                            <th>Representation</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Node</strong></td>
+                            <td>Physical hardware/environment where components run</td>
+                            <td>3D box (Device: PC, server, phone; Environment: OS, JVM)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Association</strong></td>
+                            <td>Communication path between nodes</td>
+                            <td>Solid line (shows network, protocols like HTTP, TCP)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dependency</strong></td>
+                            <td>One component needs another to function</td>
+                            <td>Dashed arrow (shows deployment relationships)</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Transformations</div>
+
+            <div class="topic">
+                <div class="question">Q: Batch vs Continuous Transformation</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Batch Transformation</th>
+                            <th>Continuous Transformation</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Process</strong></td>
+                            <td>Data processed in large groups at scheduled times</td>
+                            <td>Data processed as it arrives (real-time)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Timing</strong></td>
+                            <td>Periodic (hourly, daily, monthly)</td>
+                            <td>Immediate, continuous</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Advantages</strong></td>
+                            <td>Efficient for large volumes, off-peak processing</td>
+                            <td>Real-time results, no waiting</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>Payroll processing, Database backups</td>
+                            <td>ATM transactions, Stock trading</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Component Diagram</div>
+
+            <div class="diagram-box">
+                <img src="Component_Diagram.jpg" alt="Component Diagram">
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Components of Component Diagram</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Component</th>
+                            <th>Description</th>
+                            <th>Symbol</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Component</strong></td>
+                            <td>Modular, replaceable part (libraries, packages, modules)</td>
+                            <td>Rectangle with component icon</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Provided Interface</strong></td>
+                            <td>Services component offers</td>
+                            <td>Lollipop symbol</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Required Interface</strong></td>
+                            <td>Services component needs</td>
+                            <td>Socket symbol</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Dependency</strong></td>
+                            <td>One component depends on another</td>
+                            <td>Dashed arrow</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Realization</strong></td>
+                            <td>Component implements an interface</td>
+                            <td>Dashed line + hollow arrow</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">System Performance & Application Class Model</div>
+
+            <div class="topic">
+                <div class="question">Q: System Performance Estimation</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Predicting</span> system's speed, capacity, resource usage before implementation</li>
+                        <li><strong>Metrics:</strong> Response time, Throughput, Resource utilization</li>
+                        <li><strong>Methods:</strong> Analytical modeling, Simulation, Prototyping, Benchmarking</li>
+                        <li>Helps identify bottlenecks early</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Constructing Application Class Model</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Steps:</span></li>
+                        <li>1. Identify Classes: Find nouns in requirements</li>
+                        <li>2. Identify Attributes: Properties of each class</li>
+                        <li>3. Identify Methods: Actions/operations</li>
+                        <li>4. Identify Relationships: Associations between classes</li>
+                        <li>5. Define Multiplicity: How many instances</li>
+                        <li>6. Add Inheritance: Parent-child relationships</li>
+                        <li>7. Refine Model: Remove redundancy, add constraints</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

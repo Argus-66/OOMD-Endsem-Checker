@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 6 - OOMD Study Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #fa709a 0%, #fee140 100%); min-height: 100vh; }
+        
+        .navbar { background: rgba(255,255,255,0.95); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        
+        .navbar-content { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .nav-link { color: #333; text-decoration: none; padding: 10px 20px; border-radius: 5px; background: #f0f0f0; transition: all 0.3s ease; font-weight: 600; }
+        
+        .nav-link:hover { background: #fa709a; color: white; transform: translateY(-2px); }
+        
+        .nav-link.active { background: #fa709a; color: white; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px 30px 20px; }
+        
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        
+        .header h1 { font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 10px; }
+        
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        .section-title { color: #fa709a; font-size: 1.5em; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid #fa709a; }
+        
+        .topic { margin-bottom: 25px; }
+        
+        .question { color: #d32f2f; font-weight: 600; font-size: 1.1em; margin-bottom: 10px; }
+        
+        .answer { color: #333; line-height: 1.8; margin-left: 15px; }
+        
+        .answer ul { list-style: none; padding: 0; }
+        
+        .answer li { padding: 8px 0; padding-left: 20px; position: relative; }
+        
+        .answer li::before { content: "▸"; color: #fa709a; font-weight: bold; position: absolute; left: 0; }
+        
+        .highlight { background: #fff9c4; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        
+        th, td { border: 2px solid #fa709a; padding: 12px; text-align: left; }
+        
+        th { background: #fa709a; color: white; font-weight: 600; }
+        
+        tr:nth-child(even) { background: #f5f5f5; }
+        
+        .code-block { background: #f5f5f5; padding: 15px; border-radius: 5px; border-left: 4px solid #fa709a; font-family: 'Courier New', monospace; margin: 10px 0; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="OOMD_Checker.html" class="nav-link">🏠 Home Checker</a>
+            <a href="Unit3_Flashcards.html" class="nav-link">📚 Unit 3</a>
+            <a href="Unit4_Flashcards.html" class="nav-link">📚 Unit 4</a>
+            <a href="Unit5_Flashcards.html" class="nav-link">📚 Unit 5</a>
+            <a href="Unit6_Flashcards.html" class="nav-link active">📚 Unit 6</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="header">
+            <h1>📚 UNIT 6 STUDY GUIDE</h1>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Design Pattern Basics</div>
+
+            <div class="topic">
+                <div class="question">Q: What is a Design Pattern?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Design Pattern:</span> Reusable solution template for common design problems</li>
+                        <li><strong>Benefits:</strong></li>
+                        <li>• Proven solutions to recurring problems</li>
+                        <li>• Common vocabulary for developers</li>
+                        <li>• Speeds up development</li>
+                        <li>• Improves code maintainability</li>
+                        <li><strong>Not:</strong> Finished code you can copy-paste, but a template to adapt</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Elements of a Design Pattern</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Element</th>
+                            <th>Description</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Pattern Name</strong></td>
+                            <td>Identifies the pattern (e.g., Singleton, Observer)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Problem</strong></td>
+                            <td>Describes when to apply the pattern</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Solution</strong></td>
+                            <td>Abstract description of elements, relationships, responsibilities</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Consequences</strong></td>
+                            <td>Trade-offs, benefits, costs of applying pattern</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Types of Design Patterns</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Category</th>
+                            <th>Purpose</th>
+                            <th>Examples</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Creational</strong></td>
+                            <td>Object creation mechanisms</td>
+                            <td>Singleton, Factory, Builder, Prototype</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Structural</strong></td>
+                            <td>Compose objects into larger structures</td>
+                            <td>Adapter, Composite, Proxy, Decorator</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Behavioral</strong></td>
+                            <td>Communication between objects</td>
+                            <td>Observer, Strategy, Command, Iterator</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Observer Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Observer Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Define one-to-many dependency where state change in one object notifies all dependents</li>
+                        <li><strong>Components:</strong></li>
+                        <li>1. <strong>Subject:</strong> Maintains list of observers, notifies on state change</li>
+                        <li>2. <strong>Observer:</strong> Interface with update() method</li>
+                        <li>3. <strong>Concrete Observer:</strong> Implements update() to react to changes</li>
+                        <li><strong>Use Case:</strong> Event systems, MVC (Model notifies Views), Newsletter subscriptions</li>
+                        <li><strong>Benefits:</strong> Loose coupling, dynamic relationships</li>
+                    </ul>
+                    <div class="code-block">
+Subject: attach(observer), detach(observer), notify()<br>
+Observer: update()<br>
+When Subject changes → calls notify() → all observers' update() called
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Strategy Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Strategy Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Define family of algorithms, encapsulate each, make them interchangeable</li>
+                        <li><strong>Components:</strong></li>
+                        <li>1. <strong>Context:</strong> Uses a Strategy interface</li>
+                        <li>2. <strong>Strategy Interface:</strong> Common interface for all algorithms</li>
+                        <li>3. <strong>Concrete Strategies:</strong> Different implementations of algorithm</li>
+                        <li><strong>Use Case:</strong> Payment methods (CreditCard, PayPal), Sorting algorithms, Compression formats</li>
+                        <li><strong>Benefits:</strong> Swap algorithms at runtime, avoid conditionals, easier to add new strategies</li>
+                    </ul>
+                    <div class="code-block">
+Context → Strategy Interface ← Concrete Strategies<br>
+Example: PaymentContext uses IPaymentStrategy<br>
+Strategies: CreditCardPayment, PayPalPayment, CryptoPayment
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Adapter Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Adapter Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Convert interface of a class into another interface clients expect</li>
+                        <li><strong>Components:</strong></li>
+                        <li>1. <strong>Target:</strong> Interface expected by client</li>
+                        <li>2. <strong>Adaptee:</strong> Existing class with incompatible interface</li>
+                        <li>3. <strong>Adapter:</strong> Wraps Adaptee and implements Target interface</li>
+                        <li><strong>Use Case:</strong> Legacy system integration, Third-party library compatibility</li>
+                        <li><strong>Benefits:</strong> Reuse existing code without modification</li>
+                    </ul>
+                    <div class="code-block">
+Client → Target Interface ← Adapter → Adaptee<br>
+Example: USB-C Adapter for USB-A devices
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Factory Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Factory Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Create objects without specifying exact class</li>
+                        <li><strong>Types:</strong></li>
+                        <li>1. <strong>Simple Factory:</strong> Static method returns objects based on parameter</li>
+                        <li>2. <strong>Factory Method:</strong> Subclasses decide which class to instantiate</li>
+                        <li>3. <strong>Abstract Factory:</strong> Create families of related objects</li>
+                        <li><strong>Use Case:</strong> Document creators (PDF, Word), UI themes (Windows, Mac), Database connections</li>
+                        <li><strong>Benefits:</strong> Loose coupling, easier to extend with new types</li>
+                    </ul>
+                    <div class="code-block">
+Factory.createProduct(type) → returns Product<br>
+Example: ShapeFactory.create("circle") → Circle object
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Singleton Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Singleton Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Ensure a class has only ONE instance and provide global access</li>
+                        <li><strong>Implementation:</strong></li>
+                        <li>1. Private constructor (prevent external instantiation)</li>
+                        <li>2. Private static instance variable</li>
+                        <li>3. Public static getInstance() method</li>
+                        <li><strong>Use Case:</strong> Logger, Configuration manager, Database connection, Thread pool</li>
+                        <li><strong>Benefits:</strong> Controlled access, saves resources</li>
+                        <li><strong>Drawbacks:</strong> Hard to unit test, can violate Single Responsibility</li>
+                    </ul>
+                    <div class="code-block">
+private static instance<br>
+private Constructor() { }<br>
+public static getInstance() {<br>
+  if(instance == null) instance = new Singleton();<br>
+  return instance;<br>
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Composite Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Composite Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Compose objects into tree structures to represent part-whole hierarchies</li>
+                        <li><strong>Components:</strong></li>
+                        <li>1. <strong>Component:</strong> Interface for all objects in composition</li>
+                        <li>2. <strong>Leaf:</strong> Individual objects (no children)</li>
+                        <li>3. <strong>Composite:</strong> Container for Components (has children)</li>
+                        <li><strong>Use Case:</strong> File systems (Folder contains Files/Folders), UI components (Panel contains Buttons), Graphics (Group contains Shapes)</li>
+                        <li><strong>Benefits:</strong> Treat individual and composite objects uniformly</li>
+                    </ul>
+                    <div class="code-block">
+Component (operation())<br>
+├── Leaf (operation())<br>
+└── Composite (add(), remove(), operation() calls children's operation())
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Decorator Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Decorator Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Add responsibilities to objects dynamically without altering structure</li>
+                        <li><strong>Components:</strong></li>
+                        <li>1. <strong>Component:</strong> Interface for objects</li>
+                        <li>2. <strong>Concrete Component:</strong> Base object</li>
+                        <li>3. <strong>Decorator:</strong> Wraps component, adds behavior</li>
+                        <li><strong>Use Case:</strong> Pizza toppings, Text formatting (Bold, Italic), Java I/O streams</li>
+                        <li><strong>Benefits:</strong> More flexible than inheritance, add/remove at runtime</li>
+                    </ul>
+                    <div class="code-block">
+BasePizza → ToppingDecorator1 → ToppingDecorator2<br>
+Example: SimplePizza + CheeseDecorator + PepperoniDecorator<br>
+Each decorator adds cost and description
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Command Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Command Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Encapsulate a request as an object, allowing parameterization and queuing</li>
+                        <li><strong>Components:</strong></li>
+                        <li>1. <strong>Command:</strong> Interface with execute() method</li>
+                        <li>2. <strong>Concrete Command:</strong> Implements execute(), binds action to receiver</li>
+                        <li>3. <strong>Receiver:</strong> Object that performs actual work</li>
+                        <li>4. <strong>Invoker:</strong> Triggers command execution</li>
+                        <li><strong>Use Case:</strong> Undo/Redo, Button actions, Macro recording, Transaction management</li>
+                        <li><strong>Benefits:</strong> Decouple sender and receiver, support undo, queue operations</li>
+                    </ul>
+                    <div class="code-block">
+Invoker → Command.execute() → Receiver.action()<br>
+Example: RemoteControl → LightOnCommand → Light.turnOn()
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Template Method Pattern</div>
+
+            <div class="topic">
+                <div class="question">Q: Template Method Pattern Explained</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Purpose:</span> Define skeleton of algorithm in base class, let subclasses override specific steps</li>
+                        <li><strong>Components:</strong></li>
+                        <li>1. <strong>Abstract Class:</strong> Defines template method and abstract operations</li>
+                        <li>2. <strong>Concrete Class:</strong> Implements abstract operations</li>
+                        <li><strong>Use Case:</strong> Game AI (common flow, different behaviors), Data parsing, Report generation</li>
+                        <li><strong>Benefits:</strong> Code reuse, control over algorithm structure</li>
+                    </ul>
+                    <div class="code-block">
+AbstractClass {<br>
+  templateMethod() { step1(); step2(); step3(); }<br>
+  abstract step2();<br>
+}<br>
+ConcreteClass { step2() { /* specific implementation */ } }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Pattern Comparisons</div>
+
+            <div class="topic">
+                <div class="question">Q: Strategy vs Template Method</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Strategy</th>
+                            <th>Template Method</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Mechanism</strong></td>
+                            <td>Composition (has-a)</td>
+                            <td>Inheritance (is-a)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flexibility</strong></td>
+                            <td>Change at runtime</td>
+                            <td>Fixed at compile-time</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Variation Point</strong></td>
+                            <td>Entire algorithm</td>
+                            <td>Specific steps</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Use When</strong></td>
+                            <td>Multiple interchangeable algorithms</td>
+                            <td>Common structure, varying details</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Adapter vs Decorator</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Adapter</th>
+                            <th>Decorator</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Purpose</strong></td>
+                            <td>Convert interface to match another</td>
+                            <td>Add responsibilities without changing interface</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Interface Change</strong></td>
+                            <td>Changes interface</td>
+                            <td>Keeps same interface</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Intent</strong></td>
+                            <td>Make incompatible interfaces work</td>
+                            <td>Enhance functionality</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>USB-C to USB-A adapter</td>
+                            <td>Coffee + Milk decorator</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Factory Method vs Abstract Factory</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Factory Method</th>
+                            <th>Abstract Factory</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Scope</strong></td>
+                            <td>Creates ONE product</td>
+                            <td>Creates FAMILIES of related products</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Implementation</strong></td>
+                            <td>Single method in subclass</td>
+                            <td>Multiple factory methods</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>createButton() → WindowsButton or MacButton</td>
+                            <td>createButton(), createCheckbox() for entire UI theme</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">SOLID Principles</div>
+
+            <div class="topic">
+                <div class="question">Q: SOLID Principles Overview</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Principle</th>
+                            <th>Description</th>
+                            <th>Benefit</th>
+                        </tr>
+                        <tr>
+                            <td><strong>S - Single Responsibility</strong></td>
+                            <td>Class should have one reason to change</td>
+                            <td>Easier maintenance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>O - Open/Closed</strong></td>
+                            <td>Open for extension, closed for modification</td>
+                            <td>Add features without breaking existing code</td>
+                        </tr>
+                        <tr>
+                            <td><strong>L - Liskov Substitution</strong></td>
+                            <td>Subclasses should be substitutable for base class</td>
+                            <td>Proper inheritance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>I - Interface Segregation</strong></td>
+                            <td>Many specific interfaces better than one general</td>
+                            <td>Clients not forced to implement unused methods</td>
+                        </tr>
+                        <tr>
+                            <td><strong>D - Dependency Inversion</strong></td>
+                            <td>Depend on abstractions, not concretions</td>
+                            <td>Loose coupling, easier testing</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Anti-Patterns</div>
+
+            <div class="topic">
+                <div class="question">Q: Common Anti-Patterns (Bad Practices)</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Anti-Pattern:</span> Common bad solution to recurring problem</li>
+                        <li><strong>Examples:</strong></li>
+                        <li>1. <strong>God Object:</strong> One class knows/does too much</li>
+                        <li>2. <strong>Spaghetti Code:</strong> Complex, tangled control flow</li>
+                        <li>3. <strong>Golden Hammer:</strong> Using same solution for every problem</li>
+                        <li>4. <strong>Copy-Paste Programming:</strong> Duplicating code instead of reusing</li>
+                        <li>5. <strong>Magic Numbers:</strong> Hardcoded values without explanation</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>

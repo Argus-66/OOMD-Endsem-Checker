@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unit 5 - OOMD Study Guide</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(135deg, #11998e 0%, #38ef7d 100%); min-height: 100vh; }
+        
+        .navbar { background: rgba(255,255,255,0.95); padding: 15px 0; box-shadow: 0 2px 10px rgba(0,0,0,0.3); position: sticky; top: 0; z-index: 1000; }
+        
+        .navbar-content { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        
+        .nav-link { color: #333; text-decoration: none; padding: 10px 20px; border-radius: 5px; background: #f0f0f0; transition: all 0.3s ease; font-weight: 600; }
+        
+        .nav-link:hover { background: #11998e; color: white; transform: translateY(-2px); }
+        
+        .nav-link.active { background: #11998e; color: white; }
+        
+        .container { max-width: 1200px; margin: 30px auto; padding: 0 20px 30px 20px; }
+        
+        .header { text-align: center; color: white; margin-bottom: 30px; }
+        
+        .header h1 { font-size: 2.5em; text-shadow: 2px 2px 4px rgba(0,0,0,0.3); margin-bottom: 10px; }
+        
+        .section { background: white; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); }
+        
+        .section-title { color: #11998e; font-size: 1.5em; font-weight: bold; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 3px solid #11998e; }
+        
+        .topic { margin-bottom: 25px; }
+        
+        .question { color: #d32f2f; font-weight: 600; font-size: 1.1em; margin-bottom: 10px; }
+        
+        .answer { color: #333; line-height: 1.8; margin-left: 15px; }
+        
+        .answer ul { list-style: none; padding: 0; }
+        
+        .answer li { padding: 8px 0; padding-left: 20px; position: relative; }
+        
+        .answer li::before { content: "▸"; color: #11998e; font-weight: bold; position: absolute; left: 0; }
+        
+        .highlight { background: #fff9c4; padding: 2px 6px; border-radius: 3px; font-weight: 600; }
+        
+        table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+        
+        th, td { border: 2px solid #11998e; padding: 12px; text-align: left; }
+        
+        th { background: #11998e; color: white; font-weight: 600; }
+        
+        tr:nth-child(even) { background: #f5f5f5; }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-content">
+            <a href="OOMD_Checker.html" class="nav-link">🏠 Home Checker</a>
+            <a href="Unit3_Flashcards.html" class="nav-link">📚 Unit 3</a>
+            <a href="Unit4_Flashcards.html" class="nav-link">📚 Unit 4</a>
+            <a href="Unit5_Flashcards.html" class="nav-link active">📚 Unit 5</a>
+            <a href="Unit6_Flashcards.html" class="nav-link">📚 Unit 6</a>
+        </div>
+    </nav>
+    
+    <div class="container">
+        <div class="header">
+            <h1>📚 UNIT 5 STUDY GUIDE</h1>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Class Design Overview</div>
+
+            <div class="topic">
+                <div class="question">Q: Overview of Class Design</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Class Design:</span> Refining analysis classes into implementable code structures</li>
+                        <li><strong>Steps:</strong></li>
+                        <li>1. Identify Classes: From use cases & domain model</li>
+                        <li>2. Define Attributes: Data each class holds</li>
+                        <li>3. Define Methods: Operations/behaviors</li>
+                        <li>4. Define Relationships: Inheritance, associations</li>
+                        <li>5. Apply Design Principles: SOLID principles</li>
+                        <li>6. Optimize: Performance, memory, maintainability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Realizing Use Cases</div>
+
+            <div class="topic">
+                <div class="question">Q: Realizing Use Cases with Classes</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Realization:</span> Converting use case scenarios into class interactions</li>
+                        <li><strong>Process:</strong></li>
+                        <li>1. Identify Classes: Actors → boundary, entities → entity, control logic → control classes</li>
+                        <li>2. Assign Responsibilities: Determine which class handles each step</li>
+                        <li>3. Define Collaborations: How classes communicate (sequence diagrams)</li>
+                        <li>4. Refine Interactions: Add parameters, return types, error handling</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Inheritance Adjustments</div>
+
+            <div class="topic">
+                <div class="question">Q: Adjustment of Inheritance</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Goal:</span> Optimize inheritance hierarchies for better design</li>
+                        <li><strong>Techniques:</strong></li>
+                        <li>1. <strong>Eliminate Unnecessary Inheritance:</strong> Remove if "is-a" relationship doesn't exist</li>
+                        <li>2. <strong>Multiple Inheritance → Interfaces:</strong> Use interfaces to avoid diamond problem</li>
+                        <li>3. <strong>Deep Hierarchies → Flat:</strong> Reduce complexity by flattening</li>
+                        <li>4. <strong>Favor Composition over Inheritance:</strong> "has-a" instead of "is-a" when flexible</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Inheritance vs Composition</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Inheritance (is-a)</th>
+                            <th>Composition (has-a)</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Relationship</strong></td>
+                            <td>Child "is a" type of Parent</td>
+                            <td>Object "has a" component</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Coupling</strong></td>
+                            <td>Tight coupling</td>
+                            <td>Loose coupling</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Flexibility</strong></td>
+                            <td>Less flexible (compile-time)</td>
+                            <td>More flexible (runtime)</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Example</strong></td>
+                            <td>Dog extends Animal</td>
+                            <td>Car has Engine</td>
+                        </tr>
+                        <tr>
+                            <td><strong>When to Use</strong></td>
+                            <td>True specialization needed</td>
+                            <td>Reuse functionality without inheritance</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Associations to Attributes</div>
+
+            <div class="topic">
+                <div class="question">Q: Associations to Attributes</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Converting</span> class diagram associations into code attributes</li>
+                        <li><strong>Rules:</strong></li>
+                        <li>1. <strong>One-to-One:</strong> Single reference attribute (Person has License)</li>
+                        <li>2. <strong>One-to-Many:</strong> Collection attribute List/Array (Teacher has Students[])</li>
+                        <li>3. <strong>Many-to-Many:</strong> Collections on both sides (Student[] has Course[], Course[] has Student[])</li>
+                        <li>4. <strong>Bidirectional:</strong> Both classes hold references to each other</li>
+                        <li>5. <strong>Unidirectional:</strong> Only one class has reference</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Design Optimization</div>
+
+            <div class="topic">
+                <div class="question">Q: Design Optimization Techniques</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Technique</th>
+                            <th>Description</th>
+                            <th>Benefit</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Eliminate Classes</strong></td>
+                            <td>Remove classes with no behavior</td>
+                            <td>Reduces complexity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Redundant Associations</strong></td>
+                            <td>Remove derived/unnecessary links</td>
+                            <td>Cleaner structure</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Add Indexes</strong></td>
+                            <td>Optimize frequent lookups</td>
+                            <td>Faster access</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Caching</strong></td>
+                            <td>Store expensive computations</td>
+                            <td>Better performance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Lazy Loading</strong></td>
+                            <td>Load data only when needed</td>
+                            <td>Reduced memory</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Adding Operations</div>
+
+            <div class="topic">
+                <div class="question">Q: Criteria for Adding Operations</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1. Information Expert:</strong> Assign operation to class with most information</li>
+                        <li><strong>2. Single Responsibility:</strong> Operation matches class purpose</li>
+                        <li><strong>3. Encapsulation:</strong> Keep data and operations together</li>
+                        <li><strong>4. Cohesion:</strong> Operation logically belongs to class</li>
+                        <li><strong>Example:</strong> calculateSalary() goes in Employee class, not in Company class</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Types of Operations</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Type</th>
+                            <th>Purpose</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Constructor</strong></td>
+                            <td>Initialize object</td>
+                            <td>new Employee()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Accessor (Getter)</strong></td>
+                            <td>Read attribute value</td>
+                            <td>getName()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Mutator (Setter)</strong></td>
+                            <td>Modify attribute value</td>
+                            <td>setName()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Manager</strong></td>
+                            <td>Create/destroy related objects</td>
+                            <td>addEmployee()</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Iterator</strong></td>
+                            <td>Traverse collection</td>
+                            <td>getNextEmployee()</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Visibility & Method Reuse</div>
+
+            <div class="topic">
+                <div class="question">Q: Access Control (Visibility)</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Visibility</th>
+                            <th>Symbol</th>
+                            <th>Access Scope</th>
+                            <th>Use Case</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Public (+)</strong></td>
+                            <td>+</td>
+                            <td>Anyone can access</td>
+                            <td>API methods, interfaces</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Private (-)</strong></td>
+                            <td>-</td>
+                            <td>Only within class</td>
+                            <td>Internal data, helper methods</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Protected (#)</strong></td>
+                            <td>#</td>
+                            <td>Class + subclasses</td>
+                            <td>Shared behavior in hierarchy</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Package (~)</strong></td>
+                            <td>~</td>
+                            <td>Same package only</td>
+                            <td>Module-internal methods</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Reusing Methods</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1. Inheritance:</strong> Child class reuses parent methods</li>
+                        <li><strong>2. Composition:</strong> Delegate to component object's methods</li>
+                        <li><strong>3. Utility Classes:</strong> Static helper methods (Math.sqrt())</li>
+                        <li><strong>4. Interfaces:</strong> Different classes implement same method signature</li>
+                        <li><strong>Benefits:</strong> Less code duplication, easier maintenance</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Refactoring</div>
+
+            <div class="topic">
+                <div class="question">Q: What is Refactoring?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Refactoring:</span> Restructuring code to improve design <strong>without changing behavior</strong></li>
+                        <li><strong>Goals:</strong> Better readability, maintainability, performance</li>
+                        <li><strong>When to Refactor:</strong></li>
+                        <li>• Code smells (duplicates, long methods, large classes)</li>
+                        <li>• Before adding new features</li>
+                        <li>• During code reviews</li>
+                        <li><strong>Rule:</strong> Always maintain tests to ensure behavior unchanged</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Common Refactoring Techniques</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Technique</th>
+                            <th>Problem</th>
+                            <th>Solution</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Extract Method</strong></td>
+                            <td>Long, complex method</td>
+                            <td>Break into smaller methods</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Rename</strong></td>
+                            <td>Unclear names</td>
+                            <td>Use meaningful names</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Move Method</strong></td>
+                            <td>Method in wrong class</td>
+                            <td>Move to appropriate class</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Replace Magic Numbers</strong></td>
+                            <td>Hardcoded values</td>
+                            <td>Use named constants</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Extract Class</strong></td>
+                            <td>Class doing too much</td>
+                            <td>Split into focused classes</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">OCL Constraints</div>
+
+            <div class="topic">
+                <div class="question">Q: Object Constraint Language (OCL)</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">OCL:</span> Formal language to specify constraints on UML models</li>
+                        <li><strong>Used For:</strong></li>
+                        <li>1. <strong>Invariants:</strong> Always true conditions (age >= 0)</li>
+                        <li>2. <strong>Pre-conditions:</strong> Must be true before operation (balance > amount)</li>
+                        <li>3. <strong>Post-conditions:</strong> Must be true after operation (balance reduced)</li>
+                        <li><strong>Benefits:</strong> Precise, unambiguous specifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Patterns in Class Design</div>
+
+            <div class="topic">
+                <div class="question">Q: Common Design Patterns Used</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Pattern</th>
+                            <th>Purpose</th>
+                            <th>Application</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Singleton</strong></td>
+                            <td>Single instance</td>
+                            <td>Database connection, Logger</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Factory</strong></td>
+                            <td>Create objects without specifying class</td>
+                            <td>Document creators, UI widgets</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Strategy</strong></td>
+                            <td>Swap algorithms at runtime</td>
+                            <td>Payment methods, sorting algorithms</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Observer</strong></td>
+                            <td>Notify dependent objects</td>
+                            <td>Event systems, MVC</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Adapter</strong></td>
+                            <td>Make incompatible interfaces work</td>
+                            <td>Legacy system integration</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+</html>
