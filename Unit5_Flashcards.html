@@ -69,113 +69,200 @@
         </div>
 
         <div class="section">
-            <div class="section-title">Class Design Overview</div>
+            <div class="section-title">Organizing Class Design</div>
 
             <div class="topic">
-                <div class="question">Q: Overview of Class Design</div>
+                <div class="question">Q: Steps Involved in Organizing Class Design</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Class Design:</span> Refining analysis classes into implementable code structures</li>
-                        <li><strong>Steps:</strong></li>
-                        <li>1. Identify Classes: From use cases & domain model</li>
-                        <li>2. Define Attributes: Data each class holds</li>
-                        <li>3. Define Methods: Operations/behaviors</li>
-                        <li>4. Define Relationships: Inheritance, associations</li>
-                        <li>5. Apply Design Principles: SOLID principles</li>
-                        <li>6. Optimize: Performance, memory, maintainability</li>
+                        <li><span class="highlight">Purpose:</span> Transform initial analysis model into a well-structured design model</li>
+                        <li><strong>1) Identify Design Classes</strong></li>
+                        <li>Convert analysis classes into design classes (Entity, Control, Boundary)</li>
+                        <li><strong>2) Define Class Responsibilities</strong></li>
+                        <li>Assign clear responsibilities, follow Single Responsibility Principle</li>
+                        <li><strong>3) Identify Attributes</strong></li>
+                        <li>Determine data required by each class, decide data types and visibility</li>
+                        <li><strong>4) Identify Operations (Methods)</strong></li>
+                        <li>Define operations needed to fulfill responsibilities, derived from use cases</li>
+                        <li><strong>5) Establish Relationships</strong></li>
+                        <li>Association, Aggregation/Composition, Inheritance, Dependency</li>
+                        <li><strong>6) Adjust Inheritance</strong></li>
+                        <li>Validate IS-A relationships, introduce abstract classes, replace inheritance with composition</li>
+                        <li><strong>7) Apply Design Patterns</strong></li>
+                        <li>Use patterns like Factory, Strategy, Observer</li>
+                        <li><strong>8) Optimize Class Design</strong></li>
+                        <li>Reduce coupling, increase cohesion, refine access control</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Bridging Gap from High-Level Requirements to Low-Level Services</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Concept:</span> High-level requirements → What system should do; Low-level services → How system does it</li>
+                        <li><strong>Step 1:</strong> Analyze High-Level Requirements - Study use cases, understand system behavior</li>
+                        <li><strong>Step 2:</strong> Identify Conceptual Classes - Identify domain objects (Account, Transaction, ATM)</li>
+                        <li><strong>Step 3:</strong> Convert to Design Classes - Add software-specific responsibilities (ATMController, TransactionManager)</li>
+                        <li><strong>Step 4:</strong> Define Attributes and Operations - Convert requirements into attributes and methods (withdrawCash(), validatePIN())</li>
+                        <li><strong>Step 5:</strong> Assign Responsibilities - Decide which class performs which service</li>
+                        <li><strong>Step 6:</strong> Define Interactions - Decide how classes collaborate</li>
+                        <li><strong>Step 7:</strong> Apply Design Principles & Patterns - Use patterns to manage complexity</li>
+                        <li><strong>Step 8:</strong> Refine into Low-Level Services - Finalize method signatures</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Realizing Use Cases</div>
+            <div class="section-title">Adjustment of Inheritance</div>
 
             <div class="topic">
-                <div class="question">Q: Realizing Use Cases with Classes</div>
+                <div class="question">Q: How Adjustment of Inheritance is Done in Class Design?</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Realization:</span> Converting use case scenarios into class interactions</li>
-                        <li><strong>Process:</strong></li>
-                        <li>1. Identify Classes: Actors → boundary, entities → entity, control logic → control classes</li>
-                        <li>2. Assign Responsibilities: Determine which class handles each step</li>
-                        <li>3. Define Collaborations: How classes communicate (sequence diagrams)</li>
-                        <li>4. Refine Interactions: Add parameters, return types, error handling</li>
+                        <li><span class="highlight">Definition:</span> Process of modifying, refining, or restructuring inheritance hierarchies to ensure correct abstraction, reuse, and minimal coupling</li>
+                        <li><strong>Why Adjustment is Needed:</strong></li>
+                        <li>Analysis models are often conceptual</li>
+                        <li>Direct inheritance may cause tight coupling</li>
+                        <li>Improper inheritance may violate OO principles</li>
+                        <li>Need to optimize design for implementation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: How Adjustment of Inheritance is Done (Steps)</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1) Identify Incorrect "IS-A" Relationships</strong></li>
+                        <li>Check whether subclass truly is a type of superclass</li>
+                        <li>Example: Car IS-A Engine ❌ (Wrong → use composition)</li>
+                        <li><strong>2) Replace Inheritance with Composition</strong></li>
+                        <li>Prefer HAS-A over IS-A when behavior is reused but relationship is not IS-A</li>
+                        <li>Example: Car HAS-A Engine</li>
+                        <li><strong>3) Introduce Abstract Superclasses</strong></li>
+                        <li>Move common attributes and operations to abstract class</li>
+                        <li>Example: Account as abstract superclass for SavingsAccount, CurrentAccount</li>
+                        <li><strong>4) Push Down Responsibilities</strong></li>
+                        <li>Move behavior to subclasses if it is not common</li>
+                        <li><strong>5) Pull Up Common Features</strong></li>
+                        <li>Identify duplicate attributes or methods in subclasses and move to superclass</li>
+                        <li><strong>6) Reduce Depth of Inheritance Hierarchy</strong></li>
+                        <li>Avoid very deep inheritance trees</li>
+                        <li><strong>7) Use Interfaces Instead of Inheritance</strong></li>
+                        <li>When multiple inheritance is required or to avoid tight coupling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Importance of Adjustment of Inheritance</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1) Improves Design Quality</strong></li>
+                        <li>Ensures proper abstraction, eliminates wrong hierarchies</li>
+                        <li><strong>2) Promotes Reusability</strong></li>
+                        <li>Common behavior is reused correctly, avoids code duplication</li>
+                        <li><strong>3) Reduces Coupling</strong></li>
+                        <li>Prevents unnecessary dependencies, makes system easier to modify</li>
+                        <li><strong>4) Improves Maintainability</strong></li>
+                        <li>Changes affect fewer classes, cleaner class hierarchy</li>
+                        <li><strong>5) Supports Polymorphism</strong></li>
+                        <li>Ensures methods are overridden correctly, enables correct dynamic binding</li>
+                        <li><strong>6) Prevents Fragile Base Class Problem</strong></li>
+                        <li>Avoids ripple effect of superclass changes</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Steps for Adjustment of Inheritance</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Step 1:</strong> Review Class Hierarchy - Examine all inheritance relationships, validate IS-A relationship</li>
+                        <li><strong>Step 2:</strong> Identify Commonality and Variability - Common features → superclass, Variable features → subclasses</li>
+                        <li><strong>Step 3:</strong> Eliminate Redundant Attributes and Methods - Remove duplication across subclasses</li>
+                        <li><strong>Step 4:</strong> Replace Improper Inheritance - Use aggregation/composition where required</li>
+                        <li><strong>Step 5:</strong> Introduce Interfaces or Abstract Classes - For shared behavior without forced inheritance</li>
+                        <li><strong>Step 6:</strong> Optimize Inheritance Depth - Avoid unnecessary multilevel inheritance</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Inheritance Adjustments</div>
+            <div class="section-title">Identifying Use Cases and Actors</div>
 
             <div class="topic">
-                <div class="question">Q: Adjustment of Inheritance</div>
+                <div class="question">Q: What is a Use Case Diagram?</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Goal:</span> Optimize inheritance hierarchies for better design</li>
-                        <li><strong>Techniques:</strong></li>
-                        <li>1. <strong>Eliminate Unnecessary Inheritance:</strong> Remove if "is-a" relationship doesn't exist</li>
-                        <li>2. <strong>Multiple Inheritance → Interfaces:</strong> Use interfaces to avoid diamond problem</li>
-                        <li>3. <strong>Deep Hierarchies → Flat:</strong> Reduce complexity by flattening</li>
-                        <li>4. <strong>Favor Composition over Inheritance:</strong> "has-a" instead of "is-a" when flexible</li>
+                        <li><span class="highlight">Use Case Diagram</span> shows: External entities (actors), System functionality (use cases), Interaction between actors and system</li>
+                        <li><strong>Purpose:</strong> Capture functional requirements from user's perspective</li>
                     </ul>
                 </div>
             </div>
 
             <div class="topic">
-                <div class="question">Q: Inheritance vs Composition</div>
-                <div class="answer">
-                    <table>
-                        <tr>
-                            <th>Aspect</th>
-                            <th>Inheritance (is-a)</th>
-                            <th>Composition (has-a)</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Relationship</strong></td>
-                            <td>Child "is a" type of Parent</td>
-                            <td>Object "has a" component</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Coupling</strong></td>
-                            <td>Tight coupling</td>
-                            <td>Loose coupling</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Flexibility</strong></td>
-                            <td>Less flexible (compile-time)</td>
-                            <td>More flexible (runtime)</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Example</strong></td>
-                            <td>Dog extends Animal</td>
-                            <td>Car has Engine</td>
-                        </tr>
-                        <tr>
-                            <td><strong>When to Use</strong></td>
-                            <td>True specialization needed</td>
-                            <td>Reuse functionality without inheritance</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Associations to Attributes</div>
-
-            <div class="topic">
-                <div class="question">Q: Associations to Attributes</div>
+                <div class="question">Q: How to Identify Actors?</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Converting</span> class diagram associations into code attributes</li>
-                        <li><strong>Rules:</strong></li>
-                        <li>1. <strong>One-to-One:</strong> Single reference attribute (Person has License)</li>
-                        <li>2. <strong>One-to-Many:</strong> Collection attribute List/Array (Teacher has Students[])</li>
-                        <li>3. <strong>Many-to-Many:</strong> Collections on both sides (Student[] has Course[], Course[] has Student[])</li>
-                        <li>4. <strong>Bidirectional:</strong> Both classes hold references to each other</li>
-                        <li>5. <strong>Unidirectional:</strong> Only one class has reference</li>
+                        <li><span class="highlight">Actor Definition:</span> External entity that interacts with system to achieve a goal</li>
+                        <li><strong>1) Identify Who Uses the System</strong></li>
+                        <li>Human users who interact directly (Customer, Admin, Operator)</li>
+                        <li><strong>2) Identify External Systems</strong></li>
+                        <li>Other systems that exchange data (Bank Server, Payment Gateway)</li>
+                        <li><strong>3) Identify Hardware or Devices</strong></li>
+                        <li>Devices interacting with system (Card Reader, Printer, Sensor)</li>
+                        <li><strong>4) Identify Roles, Not Individuals</strong></li>
+                        <li>Actor represents a role (Customer, not "Rahul")</li>
+                        <li><strong>5) Ask Key Questions:</strong></li>
+                        <li>• Who starts the system?</li>
+                        <li>• Who uses the system's services?</li>
+                        <li>• Who maintains or administers the system?</li>
+                        <li>• Who gets information from the system?</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Actor Classification</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Primary Actor:</strong> Initiates use case</li>
+                        <li><strong>Secondary Actor:</strong> Supports system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: How to Identify Use Cases?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Use Case Definition:</span> Set of actions performed by system to produce observable result for an actor</li>
+                        <li><strong>1) Study System Requirements</strong></li>
+                        <li>Functional requirements directly map to use cases</li>
+                        <li><strong>2) Identify Actor Goals</strong></li>
+                        <li>Each goal of actor becomes a use case (Customer → Withdraw Cash)</li>
+                        <li><strong>3) Use Verb–Noun Format</strong></li>
+                        <li>Use cases represent actions (Check Balance, Print Receipt)</li>
+                        <li><strong>4) Identify System Services</strong></li>
+                        <li>Each service provided by system is a use case</li>
+                        <li><strong>5) Avoid UI-Level Actions</strong></li>
+                        <li>Focus on what system does, not how (✓ Submit request, ✗ Click button)</li>
+                        <li><strong>6) Check Completeness</strong></li>
+                        <li>Each actor should be linked to at least one use case</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: ATM System Example</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Identified Actors:</strong> Customer (Primary), Bank Server (Secondary), Maintenance Staff</li>
+                        <li><strong>Identified Use Cases:</strong> Insert Card, Validate PIN, Withdraw Cash, Check Balance, Print Receipt</li>
                     </ul>
                 </div>
             </div>
@@ -185,205 +272,390 @@
             <div class="section-title">Design Optimization</div>
 
             <div class="topic">
-                <div class="question">Q: Design Optimization Techniques</div>
+                <div class="question">Q: What is Design Optimization?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> Process of modifying and refining the design model to improve quality attributes such as efficiency, simplicity, and scalability without changing system functionality</li>
+                        <li><strong>Purpose:</strong> After analysis and preliminary design, optimization tasks refine the design before implementation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Tasks Involved in Design Optimization</div>
                 <div class="answer">
                     <table>
                         <tr>
-                            <th>Technique</th>
-                            <th>Description</th>
+                            <th>Task</th>
+                            <th>Explanation</th>
                             <th>Benefit</th>
                         </tr>
                         <tr>
-                            <td><strong>Eliminate Classes</strong></td>
-                            <td>Remove classes with no behavior</td>
-                            <td>Reduces complexity</td>
+                            <td><strong>1) Adjustment of Inheritance</strong></td>
+                            <td>Review hierarchies, remove incorrect IS-A, replace with composition</td>
+                            <td>Reduces coupling, improves correctness</td>
                         </tr>
                         <tr>
-                            <td><strong>Redundant Associations</strong></td>
-                            <td>Remove derived/unnecessary links</td>
-                            <td>Cleaner structure</td>
+                            <td><strong>2) Use of Design Patterns</strong></td>
+                            <td>Apply patterns (Factory, Strategy, Observer)</td>
+                            <td>Proven solutions, improves flexibility</td>
                         </tr>
                         <tr>
-                            <td><strong>Add Indexes</strong></td>
-                            <td>Optimize frequent lookups</td>
-                            <td>Faster access</td>
+                            <td><strong>3) Refinement of Class Responsibilities</strong></td>
+                            <td>Ensure Single Responsibility Principle</td>
+                            <td>High cohesion, clear class purpose</td>
                         </tr>
                         <tr>
-                            <td><strong>Caching</strong></td>
-                            <td>Store expensive computations</td>
-                            <td>Better performance</td>
+                            <td><strong>4) Reduction of Coupling</strong></td>
+                            <td>Minimize dependencies, use interfaces</td>
+                            <td>Easier modification, better scalability</td>
                         </tr>
                         <tr>
-                            <td><strong>Lazy Loading</strong></td>
-                            <td>Load data only when needed</td>
-                            <td>Reduced memory</td>
+                            <td><strong>5) Increase Cohesion</strong></td>
+                            <td>Group related attributes and operations</td>
+                            <td>Improved readability, simplified maintenance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>6) Optimization of Object Communication</strong></td>
+                            <td>Reduce unnecessary message passing</td>
+                            <td>Improved performance, reduced complexity</td>
+                        </tr>
+                        <tr>
+                            <td><strong>7) Adjustment of Access Control</strong></td>
+                            <td>Apply encapsulation, use private/protected visibility</td>
+                            <td>Better data protection</td>
+                        </tr>
+                        <tr>
+                            <td><strong>8) Optimization of Data Storage</strong></td>
+                            <td>Use efficient data structures, caching, pooling</td>
+                            <td>Better performance, reduced memory</td>
+                        </tr>
+                        <tr>
+                            <td><strong>9) Subsystem Reorganization</strong></td>
+                            <td>Group related classes, define clear interfaces</td>
+                            <td>Better modularity, supports parallel development</td>
                         </tr>
                     </table>
                 </div>
             </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Adding Operations</div>
 
             <div class="topic">
-                <div class="question">Q: Criteria for Adding Operations</div>
+                <div class="question">Q: Importance of Design Optimization</div>
                 <div class="answer">
                     <ul>
-                        <li><strong>1. Information Expert:</strong> Assign operation to class with most information</li>
-                        <li><strong>2. Single Responsibility:</strong> Operation matches class purpose</li>
-                        <li><strong>3. Encapsulation:</strong> Keep data and operations together</li>
-                        <li><strong>4. Cohesion:</strong> Operation logically belongs to class</li>
-                        <li><strong>Example:</strong> calculateSalary() goes in Employee class, not in Company class</li>
-                    </ul>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="question">Q: Types of Operations</div>
-                <div class="answer">
-                    <table>
-                        <tr>
-                            <th>Type</th>
-                            <th>Purpose</th>
-                            <th>Example</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Constructor</strong></td>
-                            <td>Initialize object</td>
-                            <td>new Employee()</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Accessor (Getter)</strong></td>
-                            <td>Read attribute value</td>
-                            <td>getName()</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Mutator (Setter)</strong></td>
-                            <td>Modify attribute value</td>
-                            <td>setName()</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Manager</strong></td>
-                            <td>Create/destroy related objects</td>
-                            <td>addEmployee()</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Iterator</strong></td>
-                            <td>Traverse collection</td>
-                            <td>getNextEmployee()</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="section">
-            <div class="section-title">Visibility & Method Reuse</div>
-
-            <div class="topic">
-                <div class="question">Q: Access Control (Visibility)</div>
-                <div class="answer">
-                    <table>
-                        <tr>
-                            <th>Visibility</th>
-                            <th>Symbol</th>
-                            <th>Access Scope</th>
-                            <th>Use Case</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Public (+)</strong></td>
-                            <td>+</td>
-                            <td>Anyone can access</td>
-                            <td>API methods, interfaces</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Private (-)</strong></td>
-                            <td>-</td>
-                            <td>Only within class</td>
-                            <td>Internal data, helper methods</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Protected (#)</strong></td>
-                            <td>#</td>
-                            <td>Class + subclasses</td>
-                            <td>Shared behavior in hierarchy</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Package (~)</strong></td>
-                            <td>~</td>
-                            <td>Same package only</td>
-                            <td>Module-internal methods</td>
-                        </tr>
-                    </table>
-                </div>
-            </div>
-
-            <div class="topic">
-                <div class="question">Q: Reusing Methods</div>
-                <div class="answer">
-                    <ul>
-                        <li><strong>1. Inheritance:</strong> Child class reuses parent methods</li>
-                        <li><strong>2. Composition:</strong> Delegate to component object's methods</li>
-                        <li><strong>3. Utility Classes:</strong> Static helper methods (Math.sqrt())</li>
-                        <li><strong>4. Interfaces:</strong> Different classes implement same method signature</li>
-                        <li><strong>Benefits:</strong> Less code duplication, easier maintenance</li>
+                        <li>Improves system quality</li>
+                        <li>Reduces future maintenance cost</li>
+                        <li>Enhances performance</li>
+                        <li>Ensures design scalability</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Refactoring</div>
+            <div class="section-title">Finding and Defining Classes</div>
+
+            <div class="topic">
+                <div class="question">Q: What is a Class?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> A blueprint that defines the attributes (data) and operations (behavior) of objects</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Guidelines for Finding Classes</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1) Noun Phrase Identification</strong></li>
+                        <li>Study requirements, identify nouns (ATM, Account, Card, Transaction)</li>
+                        <li><strong>2) Identify Conceptual Classes from Domain</strong></li>
+                        <li>Focus on real-world entities (Customer, Bank, Account)</li>
+                        <li><strong>3) Identify Classes from Use Cases</strong></li>
+                        <li>Analyze use case descriptions (Withdraw Cash → Account, Transaction)</li>
+                        <li><strong>4) Identify Boundary, Control, and Entity Classes</strong></li>
+                        <li>Boundary: Interfaces (ATM_UI); Control: Coordinates logic (TransactionController); Entity: Stores data (Account)</li>
+                        <li><strong>5) Eliminate Irrelevant Classes</strong></li>
+                        <li>Remove: Attributes (address), Operations (print), Implementation details (file, database)</li>
+                        <li><strong>6) Identify Abstract Classes</strong></li>
+                        <li>Identify common behavior (Account → SavingsAccount, CurrentAccount)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Guidelines for Defining Classes</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>7) Define Class Responsibilities</strong></li>
+                        <li>Assign clear responsibilities, follow Single Responsibility Principle</li>
+                        <li><strong>8) Identify Attributes</strong></li>
+                        <li>Attributes should represent state (Account → accountNumber, balance)</li>
+                        <li><strong>9) Identify Operations (Methods)</strong></li>
+                        <li>Operations represent behavior (debit(), credit(), validatePIN())</li>
+                        <li><strong>10) Define Relationships</strong></li>
+                        <li>Association, Aggregation/Composition, Inheritance, Dependency</li>
+                        <li><strong>11) Ensure High Cohesion</strong></li>
+                        <li>Class should focus on single purpose, avoid unrelated methods</li>
+                        <li><strong>12) Reduce Coupling</strong></li>
+                        <li>Minimize dependencies between classes, use interfaces</li>
+                        <li><strong>13) Validate Using CRC Cards</strong></li>
+                        <li>Class–Responsibility–Collaborator helps refine responsibilities</li>
+                        <li><strong>14) Refine Through Iteration</strong></li>
+                        <li>Review and adjust, remove redundancy, simplify hierarchy</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Importance of Proper Class Identification</div>
+                <div class="answer">
+                    <ul>
+                        <li>Accurate system representation</li>
+                        <li>Easier implementation</li>
+                        <li>Better reuse</li>
+                        <li>Reduced maintenance effort</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Refactoring and Reification</div>
 
             <div class="topic">
                 <div class="question">Q: What is Refactoring?</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">Refactoring:</span> Restructuring code to improve design <strong>without changing behavior</strong></li>
-                        <li><strong>Goals:</strong> Better readability, maintainability, performance</li>
-                        <li><strong>When to Refactor:</strong></li>
-                        <li>• Code smells (duplicates, long methods, large classes)</li>
-                        <li>• Before adding new features</li>
-                        <li>• During code reviews</li>
-                        <li><strong>Rule:</strong> Always maintain tests to ensure behavior unchanged</li>
+                        <li><span class="highlight">Definition:</span> Process of improving internal structure of classes without changing their external behavior</li>
+                        <li><strong>Purpose:</strong> Improve readability, reduce complexity, remove code duplication, improve maintainability</li>
+                        <li><strong>Refactoring Activities:</strong></li>
+                        <li>• Splitting large classes</li>
+                        <li>• Renaming classes, attributes, methods</li>
+                        <li>• Moving methods to appropriate classes</li>
+                        <li>• Simplifying inheritance hierarchies</li>
+                        <li>• Replacing inheritance with composition</li>
                     </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Refactoring Example</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Before:</strong> Class Transaction with validate(), log(), notifyUser()</li>
+                        <li><strong>After:</strong> Transaction, Logger, NotificationService (responsibilities separated)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is Reification?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> Process of converting an abstract concept, behavior, or relationship into an explicit class</li>
+                        <li><strong>Purpose:</strong> Make design more flexible, enable dynamic behavior, support reuse and extension</li>
+                        <li><strong>When Reification is Applied:</strong></li>
+                        <li>• When behavior varies at runtime</li>
+                        <li>• When relationships need independent control</li>
+                        <li>• When rules or policies change frequently</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Reification Example</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Without Reification:</strong> if(paymentType == CARD) / if(paymentType == CASH)</li>
+                        <li><strong>With Reification:</strong> Payment class with CardPayment and CashPayment subclasses</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Refactoring vs Reification Comparison</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Aspect</th>
+                            <th>Refactoring</th>
+                            <th>Reification</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Meaning</strong></td>
+                            <td>Improves structure</td>
+                            <td>Converts concept into class</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Behavior Change</strong></td>
+                            <td>No</td>
+                            <td>No</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Focus</strong></td>
+                            <td>Code/design cleanup</td>
+                            <td>Explicit representation</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Result</strong></td>
+                            <td>Cleaner design</td>
+                            <td>More flexible design</td>
+                        </tr>
+                    </table>
                 </div>
             </div>
 
             <div class="topic">
                 <div class="question">Q: Common Refactoring Techniques</div>
                 <div class="answer">
+                    <ul>
+                        <li><strong>Extract Class:</strong> Breaking large class into smaller, responsibility-focused classes</li>
+                        <li><strong>Rename Method:</strong> Use meaningful names</li>
+                        <li><strong>Move Method:</strong> Move to appropriate class</li>
+                        <li><strong>Remove unused attributes:</strong> Clean up unused code</li>
+                        <li><strong>Simplify inheritance hierarchy:</strong> Reduce complexity</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Data Dictionary</div>
+
+            <div class="topic">
+                <div class="question">Q: What is Data Dictionary?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> Collection of definitions and descriptions of data items, data structures, data flows, and data stores used in a system</li>
+                        <li><strong>Purpose:</strong></li>
+                        <li>• Provide clear meaning of data elements</li>
+                        <li>• Avoid ambiguity and inconsistency</li>
+                        <li>• Act as reference for designers and developers</li>
+                        <li>• Support system documentation and maintenance</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Contents of Data Dictionary</div>
+                <div class="answer">
+                    <ul>
+                        <li>Data element name</li>
+                        <li>Description</li>
+                        <li>Data type</li>
+                        <li>Size / length</li>
+                        <li>Source</li>
+                        <li>Destination</li>
+                        <li>Constraints / validation rules</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Importance of Data Dictionary</div>
+                <div class="answer">
+                    <ul>
+                        <li>Improves communication among team members</li>
+                        <li>Helps in database design</li>
+                        <li>Ensures uniform data usage</li>
+                        <li>Reduces errors during implementation</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Data Dictionary for ATM System</div>
+                <div class="answer">
                     <table>
                         <tr>
-                            <th>Technique</th>
-                            <th>Problem</th>
-                            <th>Solution</th>
+                            <th>Data Element</th>
+                            <th>Description</th>
+                            <th>Data Type</th>
+                            <th>Size</th>
+                            <th>Source</th>
+                            <th>Constraints</th>
                         </tr>
                         <tr>
-                            <td><strong>Extract Method</strong></td>
-                            <td>Long, complex method</td>
-                            <td>Break into smaller methods</td>
+                            <td><strong>CardNumber</strong></td>
+                            <td>Unique number on ATM card</td>
+                            <td>Numeric</td>
+                            <td>16 digits</td>
+                            <td>ATM Card</td>
+                            <td>Must be valid</td>
                         </tr>
                         <tr>
-                            <td><strong>Rename</strong></td>
-                            <td>Unclear names</td>
-                            <td>Use meaningful names</td>
+                            <td><strong>PIN</strong></td>
+                            <td>Personal Identification Number</td>
+                            <td>Numeric</td>
+                            <td>4 digits</td>
+                            <td>User</td>
+                            <td>Confidential</td>
                         </tr>
                         <tr>
-                            <td><strong>Move Method</strong></td>
-                            <td>Method in wrong class</td>
-                            <td>Move to appropriate class</td>
+                            <td><strong>AccountNumber</strong></td>
+                            <td>Unique bank account ID</td>
+                            <td>Numeric</td>
+                            <td>12 digits</td>
+                            <td>Bank DB</td>
+                            <td>Must exist</td>
                         </tr>
                         <tr>
-                            <td><strong>Replace Magic Numbers</strong></td>
-                            <td>Hardcoded values</td>
-                            <td>Use named constants</td>
+                            <td><strong>AccountType</strong></td>
+                            <td>Type of account</td>
+                            <td>String</td>
+                            <td>10</td>
+                            <td>Bank DB</td>
+                            <td>Savings/Current</td>
                         </tr>
                         <tr>
-                            <td><strong>Extract Class</strong></td>
-                            <td>Class doing too much</td>
-                            <td>Split into focused classes</td>
+                            <td><strong>Balance</strong></td>
+                            <td>Available account balance</td>
+                            <td>Decimal</td>
+                            <td>—</td>
+                            <td>Bank DB</td>
+                            <td>≥ 0</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TransactionID</strong></td>
+                            <td>Unique transaction identifier</td>
+                            <td>Alphanumeric</td>
+                            <td>10</td>
+                            <td>ATM System</td>
+                            <td>Unique</td>
+                        </tr>
+                        <tr>
+                            <td><strong>TransactionType</strong></td>
+                            <td>Type of transaction</td>
+                            <td>String</td>
+                            <td>15</td>
+                            <td>User</td>
+                            <td>Withdraw/Balance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Amount</strong></td>
+                            <td>Transaction amount</td>
+                            <td>Decimal</td>
+                            <td>—</td>
+                            <td>User</td>
+                            <td>≤ Balance</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DateTime</strong></td>
+                            <td>Date and time of transaction</td>
+                            <td>DateTime</td>
+                            <td>—</td>
+                            <td>System</td>
+                            <td>System-generated</td>
+                        </tr>
+                        <tr>
+                            <td><strong>ATMID</strong></td>
+                            <td>Unique ATM machine ID</td>
+                            <td>Alphanumeric</td>
+                            <td>8</td>
+                            <td>ATM System</td>
+                            <td>Fixed</td>
                         </tr>
                     </table>
                 </div>
@@ -391,59 +663,379 @@
         </div>
 
         <div class="section">
-            <div class="section-title">OCL Constraints</div>
+            <div class="section-title">Package Dependencies</div>
 
             <div class="topic">
-                <div class="question">Q: Object Constraint Language (OCL)</div>
+                <div class="question">Q: What is Package Dependency?</div>
                 <div class="answer">
                     <ul>
-                        <li><span class="highlight">OCL:</span> Formal language to specify constraints on UML models</li>
-                        <li><strong>Used For:</strong></li>
-                        <li>1. <strong>Invariants:</strong> Always true conditions (age >= 0)</li>
-                        <li>2. <strong>Pre-conditions:</strong> Must be true before operation (balance > amount)</li>
-                        <li>3. <strong>Post-conditions:</strong> Must be true after operation (balance reduced)</li>
-                        <li><strong>Benefits:</strong> Precise, unambiguous specifications</li>
+                        <li><span class="highlight">Definition:</span> Relationship that shows one package depends on another package for its functionality</li>
+                        <li><strong>Purpose:</strong> Organize related classes and model dependencies between packages</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Types of Dependencies in Package</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Dependency Type</th>
+                            <th>Meaning</th>
+                            <th>Strength</th>
+                            <th>Example</th>
+                        </tr>
+                        <tr>
+                            <td><strong>Usage (<<use>>)</strong></td>
+                            <td>Uses services/elements of another package</td>
+                            <td>Medium</td>
+                            <td>UI package uses Business Logic</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Import (<<import>>)</strong></td>
+                            <td>Full public access, can reference directly</td>
+                            <td>Strong</td>
+                            <td>Package A imports Package B classes</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Access (<<access>>)</strong></td>
+                            <td>Qualified access using package name</td>
+                            <td>Weak</td>
+                            <td>Package A accesses Package B with qualified names</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Merge (<<merge>>)</strong></td>
+                            <td>Combines contents of packages</td>
+                            <td>Strong</td>
+                            <td>Application merges framework package</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Realization</strong></td>
+                            <td>Implements specifications/interfaces</td>
+                            <td>Medium</td>
+                            <td>Implementation realizes Interface package</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Detailed Explanation of Dependencies</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1) Usage Dependency (<<use>>):</strong></li>
+                        <li>Client package depends on supplier package, supplier provides services</li>
+                        <li>Representation: Dashed arrow from using to used package</li>
+                        <li><strong>2) Import Dependency (<<import>>):</strong></li>
+                        <li>Imported elements can be referenced directly without package prefix</li>
+                        <li>Creates tight coupling</li>
+                        <li><strong>3) Access Dependency (<<access>>):</strong></li>
+                        <li>Elements must be referenced using package name (weaker than import)</li>
+                        <li><strong>4) Merge Dependency (<<merge>>):</strong></li>
+                        <li>Used to extend or refine package definitions, common in framework extension</li>
+                        <li>Elements of merged package become part of target</li>
+                        <li><strong>5) Realization Dependency:</strong></li>
+                        <li>One package provides implementation, another provides interfaces/abstract definitions</li>
+                        <li>Representation: Dashed line with hollow arrow</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Importance of Package Dependencies</div>
+                <div class="answer">
+                    <ul>
+                        <li>Helps manage large systems</li>
+                        <li>Controls coupling between packages</li>
+                        <li>Improves modularity</li>
+                        <li>Aids impact analysis during changes</li>
                     </ul>
                 </div>
             </div>
         </div>
 
         <div class="section">
-            <div class="section-title">Patterns in Class Design</div>
+            <div class="section-title">System Design</div>
 
             <div class="topic">
-                <div class="question">Q: Common Design Patterns Used</div>
+                <div class="question">Q: What is System Design?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> Process of defining the architecture, subsystems, control strategy, data storage, and interfaces of a software system</li>
+                        <li><strong>Purpose:</strong> Transforms analysis models into high-level solution structure</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Objectives of System Design</div>
+                <div class="answer">
+                    <ul>
+                        <li>Decide system architecture</li>
+                        <li>Divide system into subsystems</li>
+                        <li>Define communication between subsystems</li>
+                        <li>Address non-functional requirements</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Activities in System Design</div>
+                <div class="answer">
+                    <ul>
+                        <li>Architectural design</li>
+                        <li>Subsystem decomposition</li>
+                        <li>Control strategy selection</li>
+                        <li>Data management design</li>
+                        <li>Global resource handling</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Example - ATM System</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>Subsystems:</strong> UI, Authentication, Transaction, Database</li>
+                        <li><strong>Architecture:</strong> Client–Server</li>
+                        <li><strong>Control:</strong> Event-driven</li>
+                        <li><strong>Flow:</strong> ATM → Bank Server → Database</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Scenario</div>
+
+            <div class="topic">
+                <div class="question">Q: What is a Scenario?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> Specific sequence of steps describing how a user interacts with the system to achieve a goal</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Purpose of Defining Scenario</div>
+                <div class="answer">
+                    <ul>
+                        <li>Understand system behavior</li>
+                        <li>Validate requirements</li>
+                        <li>Identify use cases</li>
+                        <li>Help design interaction diagrams</li>
+                        <li>Clarifies requirements</li>
+                        <li>Helps in test case design</li>
+                        <li>Improves communication</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Example - ATM Scenario</div>
+                <div class="answer">
+                    <ul>
+                        <li>1. Insert card</li>
+                        <li>2. Enter PIN</li>
+                        <li>3. Select withdraw</li>
+                        <li>4. Receive cash</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Activity Diagram from Use Case</div>
+
+            <div class="topic">
+                <div class="question">Q: Process of Preparing Activity Diagram from Use Case Diagram</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Concept:</span> Use case tells what, activity diagram shows how step-by-step</li>
+                        <li><strong>Step 1:</strong> Select a Use Case (Example: Withdraw Cash)</li>
+                        <li><strong>Step 2:</strong> Identify Activities (Insert Card, Validate PIN, Select Amount, Dispense Cash)</li>
+                        <li><strong>Step 3:</strong> Identify Control Flow (Decisions, loops, parallel actions)</li>
+                        <li><strong>Step 4:</strong> Add Start and End Nodes (Initial and final states)</li>
+                        <li><strong>Step 5:</strong> Draw Activity Diagram</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Fine-Tuning Generalization and Realizing Associations</div>
+
+            <div class="topic">
+                <div class="question">Q: Fine-Tuning Generalization</div>
+                <div class="answer">
+                    <ul>
+                        <li>Correct improper inheritance</li>
+                        <li>Move common features to superclass</li>
+                        <li><strong>Purpose:</strong> Improve reuse, ensure correct IS-A relationship</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Realizing Associations</div>
+                <div class="answer">
+                    <ul>
+                        <li>Convert conceptual relationships into design-level associations</li>
+                        <li><strong>Example:</strong></li>
+                        <li>Account (Superclass) → Savings, Current (Subclasses)</li>
+                        <li>Association: Customer —— Account</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Algorithm Design</div>
+
+            <div class="topic">
+                <div class="question">Q: Steps to Design Algorithms</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1. Understand the problem</strong> - Analyze requirements thoroughly</li>
+                        <li><strong>2. Define inputs and outputs</strong> - Identify what goes in and what comes out</li>
+                        <li><strong>3. Choose appropriate logic</strong> - Select suitable approach/strategy</li>
+                        <li><strong>4. Write step-wise procedure</strong> - Break down into clear steps</li>
+                        <li><strong>5. Optimize logic</strong> - Improve efficiency</li>
+                        <li><strong>6. Validate correctness</strong> - Test with examples</li>
+                        <li><strong>7. Analyze complexity</strong> - Time and space complexity</li>
+                        <li><strong>Example:</strong> Algorithm for PIN validation in ATM</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Reverse Engineering</div>
+
+            <div class="topic">
+                <div class="question">Q: What is Reverse Engineering?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> Process of analyzing an existing system to extract its design and specifications</li>
+                        <li><strong>Purpose:</strong> Understand legacy systems, improve maintainability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Inputs and Outputs of Reverse Engineering</div>
                 <div class="answer">
                     <table>
                         <tr>
-                            <th>Pattern</th>
-                            <th>Purpose</th>
-                            <th>Application</th>
+                            <th>Inputs</th>
+                            <th>Outputs</th>
                         </tr>
                         <tr>
-                            <td><strong>Singleton</strong></td>
-                            <td>Single instance</td>
-                            <td>Database connection, Logger</td>
+                            <td>Source code</td>
+                            <td>UML diagrams</td>
                         </tr>
                         <tr>
-                            <td><strong>Factory</strong></td>
-                            <td>Create objects without specifying class</td>
-                            <td>Document creators, UI widgets</td>
+                            <td>Executables</td>
+                            <td>Documentation</td>
                         </tr>
                         <tr>
-                            <td><strong>Strategy</strong></td>
-                            <td>Swap algorithms at runtime</td>
-                            <td>Payment methods, sorting algorithms</td>
+                            <td>Existing system</td>
+                            <td>Design models</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Implementation Modeling</div>
+
+            <div class="topic">
+                <div class="question">Q: Steps Involved in Implementation Modeling</div>
+                <div class="answer">
+                    <ul>
+                        <li><strong>1. Identify components</strong> - Determine software components</li>
+                        <li><strong>2. Map classes to components</strong> - Assign classes to implementation units</li>
+                        <li><strong>3. Define interfaces</strong> - Specify component interfaces</li>
+                        <li><strong>4. Prepare component diagram</strong> - Show component structure</li>
+                        <li><strong>5. Create deployment diagram</strong> - Show physical deployment</li>
+                        <li><strong>6. Assign software to hardware nodes</strong> - Map to physical machines</li>
+                        <li><strong>Purpose:</strong> Prepare system for implementation, show physical structure</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Wrapping and Maintenance</div>
+
+            <div class="topic">
+                <div class="question">Q: What is Wrapping?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Wrapping:</span> Encapsulating existing system or code</li>
+                        <li>Provides new interface without changing internals</li>
+                        <li><strong>Example:</strong> Wrapper around legacy system</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: What is Maintenance?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Maintenance:</span> Modification after deployment</li>
+                        <li><strong>Types:</strong></li>
+                        <li>• Corrective - Fix bugs</li>
+                        <li>• Adaptive - Adapt to environment changes</li>
+                        <li>• Perfective - Enhance features</li>
+                        <li><strong>Importance:</strong> Increases system life, improves reliability</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">Abstraction</div>
+
+            <div class="topic">
+                <div class="question">Q: What is Abstraction?</div>
+                <div class="answer">
+                    <ul>
+                        <li><span class="highlight">Definition:</span> Process of hiding unnecessary details and showing only essential features</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="topic">
+                <div class="question">Q: Categories of Abstraction</div>
+                <div class="answer">
+                    <table>
+                        <tr>
+                            <th>Category</th>
+                            <th>Description</th>
+                            <th>Example</th>
                         </tr>
                         <tr>
-                            <td><strong>Observer</strong></td>
-                            <td>Notify dependent objects</td>
-                            <td>Event systems, MVC</td>
+                            <td><strong>1) Data Abstraction</strong></td>
+                            <td>Hides internal data representation</td>
+                            <td>Class attributes</td>
                         </tr>
                         <tr>
-                            <td><strong>Adapter</strong></td>
-                            <td>Make incompatible interfaces work</td>
-                            <td>Legacy system integration</td>
+                            <td><strong>2) Procedural Abstraction</strong></td>
+                            <td>Hides implementation of operations</td>
+                            <td>Methods</td>
+                        </tr>
+                        <tr>
+                            <td><strong>3) Control Abstraction</strong></td>
+                            <td>Hides control flow details</td>
+                            <td>Loops, conditions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>4) Functional Abstraction</strong></td>
+                            <td>Focuses on what function does, not how</td>
+                            <td>Public methods</td>
                         </tr>
                     </table>
                 </div>
